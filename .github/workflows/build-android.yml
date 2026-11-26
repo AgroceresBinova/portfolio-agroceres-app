@@ -32,16 +32,16 @@ jobs:
         run: npm install @capacitor/core @capacitor/cli @capacitor/android
 
       - name: Preparar aplicação web
-  run: |
-    rm -rf www
-    mkdir -p www
+        run: |
+          rm -rf www
+          mkdir -p www
 
-    find . -mindepth 1 -maxdepth 1 \
-      ! -name "www" \
-      ! -name "android" \
-      ! -name ".git" \
-      ! -name ".github" \
-      -exec cp -r {} www/ \;
+          find . -mindepth 1 -maxdepth 1 \
+            ! -name "www" \
+            ! -name "android" \
+            ! -name ".git" \
+            ! -name ".github" \
+            -exec cp -r {} www/ \;
 
       - name: Remover Android anterior
         run: rm -rf android
