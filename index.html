@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfólio Agroceres Binova</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<style>
+:root{
+  --verde:#006833; --verde2:#007345; --limao:#86C343; --vivo:#3BA635;
+  --texto:#404040; --cinza:#6b6b6b; --linha:#e7ece8; --fundo:#ffffff; --suave:#f3f8ef;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--fundo)}
+body{font-family:'Exo 2',system-ui,sans-serif;color:var(--texto);-webkit-font-smoothing:antialiased;min-height:100vh;padding-bottom:84px}
+body::before{content:"";position:fixed;left:0;top:0;bottom:0;width:6px;background:var(--verde);z-index:30}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+img{max-width:100%;display:block}
+.wrap{max-width:980px;margin:0 auto;padding:0 20px 0 26px}
+
+/* Top bar */
+.top{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--linha)}
+.top .wrap{display:flex;align-items:center;gap:12px;height:62px}
+.back{width:38px;height:38px;border-radius:12px;border:1px solid var(--linha);background:#fff;display:none;align-items:center;justify-content:center;color:var(--verde)}
+.back.on{display:flex}
+.top .logo{height:32px;width:auto}
+.top .crumb{margin-left:auto;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--verde);text-align:right}
+
+/* Bottom nav */
+.nav{position:fixed;left:0;right:0;bottom:0;z-index:25;background:#fff;border-top:1px solid var(--linha);padding-bottom:env(safe-area-inset-bottom)}
+.nav .in{max-width:620px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr)}
+.nav a{display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 2px 10px;font-size:10.5px;font-weight:600;color:#8a8f8b;text-transform:uppercase;letter-spacing:.03em}
+.nav a svg{width:22px;height:22px}
+.nav a.on{color:var(--verde)}
+.nav a.on svg{stroke:var(--verde)}
+
+/* Generic */
+.sec{margin:34px 0}
+.h{display:flex;align-items:center;gap:10px;color:var(--verde);font-weight:800;font-size:24px;line-height:1.1}
+.h svg{width:26px;height:26px;flex:none}
+.hbar{height:3px;width:70px;background:var(--limao);border-radius:2px;margin:10px 0 16px}
+.sub{color:var(--verde);font-size:15px;font-weight:500;margin-top:-8px;margin-bottom:14px}
+.caps{text-transform:uppercase;letter-spacing:.06em;font-weight:700;font-size:11.5px}
+p.txt{font-size:15.5px;line-height:1.6}
+p.txt + p.txt{margin-top:12px}
+em,i{font-style:italic}
+.muted{color:var(--cinza)}
+.card{background:#fff;border-radius:16px 4px 16px 16px;box-shadow:0 4px 18px rgba(0,60,25,.08);border:1px solid #eef2ef}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:720px){.grid3{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:460px){.grid2.stack{grid-template-columns:1fr}}
+
+/* Home */
+.hero{padding:30px 0 6px}
+.hero .kick{color:var(--limao);font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:12px}
+.hero h1{font-size:clamp(30px,7vw,48px);font-weight:900;color:#111;line-height:1.02;margin-top:6px}
+.hero h1 b{color:var(--verde)}
+.hero p{margin-top:10px;color:var(--cinza);font-size:15.5px;max-width:520px}
+.search{margin-top:20px;position:relative}
+.search input{width:100%;font-family:inherit;font-size:16px;padding:15px 16px 15px 46px;border-radius:14px;border:1.5px solid var(--linha);outline:none;background:#fafcf9;color:#222}
+.search input:focus{border-color:var(--limao);background:#fff}
+.search svg{position:absolute;left:15px;top:50%;transform:translateY(-50%);width:20px;height:20px;stroke:var(--verde)}
+.results{margin-top:12px;display:grid;gap:8px}
+.lines{display:grid;gap:14px;margin-top:26px}
+.line{display:flex;align-items:center;gap:16px;padding:18px;position:relative;overflow:hidden;min-height:118px}
+.line .ic{width:56px;height:56px;border-radius:16px;background:var(--suave);display:flex;align-items:center;justify-content:center;flex:none}
+.line .ic svg{width:30px;height:30px;stroke:var(--verde)}
+.line h3{font-size:22px;font-weight:800;color:#111}
+.line p{font-size:13.5px;color:var(--cinza);margin-top:2px}
+.line .count{margin-top:8px;display:inline-block;background:var(--verde);color:#fff;border-radius:999px;padding:3px 10px;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+.line .count.soon{background:#e9efe9;color:var(--cinza)}
+.line .go{margin-left:auto;color:var(--verde);flex:none}
+.line.binova{background:var(--verde);border-color:var(--verde)}
+.line.binova h3,.line.binova p{color:#fff}
+.line.binova .ic{background:rgba(255,255,255,.14)}
+.line.binova .ic svg{stroke:#fff}
+.line.binova .go{color:#fff}
+
+/* Product list */
+.pgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media (min-width:760px){.pgrid{grid-template-columns:repeat(4,1fr)}}
+.pcard{display:flex;flex-direction:column;overflow:hidden;transition:transform .15s}
+.pcard:active{transform:scale(.98)}
+.pcard .ph{height:150px;display:flex;align-items:center;justify-content:center;padding:12px;background:linear-gradient(180deg,#fff, #f4f8f2)}
+.pcard .ph img{max-height:100%;width:auto;object-fit:contain}
+.pcard .pb{padding:12px 14px 14px;border-top:1px solid var(--linha)}
+.pcard .cat{color:var(--limao);font-size:10.5px}
+.pcard .nm{font-size:19px;font-weight:800;color:#111;line-height:1.1;margin-top:3px}
+.pcard .ds{font-size:12.5px;color:var(--cinza);margin-top:5px;line-height:1.35}
+.nm .ag,.pname .ag{font-weight:500;font-size:.8em;margin-right:1px}
+
+/* Product page */
+.phero{display:grid;grid-template-columns:1.1fr .9fr;gap:20px;align-items:center;padding:26px 0 8px}
+@media (max-width:720px){.phero{grid-template-columns:1fr}}
+.pname{font-size:clamp(38px,10vw,62px);font-weight:900;color:#111;line-height:.95;letter-spacing:-.01em}
+.pcat{color:var(--verde);font-weight:800;text-transform:uppercase;font-size:14px;letter-spacing:.04em;margin-top:8px}
+.pslogan{font-size:20px;font-weight:800;text-transform:uppercase;color:#1a1a1a;margin-top:16px;line-height:1.15}
+.micro{display:flex;align-items:center;gap:12px;margin-top:18px;padding:12px 14px;background:var(--suave);border-radius:14px}
+.micro .mi{width:42px;height:42px;border-radius:50%;border:2px solid var(--verde);display:flex;align-items:center;justify-content:center;flex:none;background:#fff}
+.micro .mi svg{width:24px;height:24px;stroke:var(--verde)}
+.micro b{display:block;font-size:14px;color:#111}
+.micro span{font-size:13.5px}
+.pimg{display:flex;justify-content:center;align-items:center}
+.pimg img{max-height:340px;width:auto;object-fit:contain;filter:drop-shadow(0 14px 18px rgba(0,0,0,.12))}
+.pimg.wide img{max-height:none;width:100%}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;padding:13px 12px;border-radius:12px;font-weight:700;font-size:14px;border:1.5px solid var(--verde);background:#fff;color:var(--verde);text-transform:uppercase;letter-spacing:.03em}
+.btn.solid{background:var(--verde);color:#fff}
+.btn svg{width:18px;height:18px}
+.btn[disabled]{opacity:.45;cursor:default}
+.jump{display:flex;gap:8px;overflow-x:auto;padding:4px 0 6px;margin-top:22px;scrollbar-width:none}
+.jump::-webkit-scrollbar{display:none}
+.jump a{flex:none;padding:8px 14px;border-radius:999px;background:var(--suave);color:var(--verde);font-size:12.5px;font-weight:700;white-space:nowrap}
+
+/* Feature boxes */
+.feat{padding:0;overflow:hidden}
+.feat .tag{display:inline-block;background:var(--verde);color:#fff;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:7px 12px;border-radius:0 0 10px 0}
+.feat .fb{display:flex;gap:12px;padding:12px 14px 16px;align-items:flex-start}
+.feat .fb svg{width:34px;height:34px;stroke:var(--verde);flex:none}
+.feat .fb p{font-size:14px;line-height:1.45}
+
+/* Benefits */
+.ben{padding:14px;display:flex;flex-direction:column;gap:8px}
+.ben svg{width:30px;height:30px;stroke:var(--verde)}
+.ben b{color:var(--verde);font-size:12px;text-transform:uppercase;letter-spacing:.04em;font-weight:800}
+.ben span{font-size:13.5px;line-height:1.4}
+
+/* Lists */
+.chk{list-style:none;display:grid;gap:10px}
+.chk li{display:flex;gap:10px;font-size:15px;line-height:1.45}
+.chk li::before{content:"";flex:none;width:20px;height:20px;margin-top:1px;border-radius:50%;background:var(--limao) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center/13px no-repeat}
+.targets{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media (max-width:520px){.targets{grid-template-columns:1fr}}
+.tgt{padding:12px 14px;border-left:4px solid var(--limao);border-radius:4px 12px 12px 4px;background:#fafcf9}
+.tgt b{display:block;color:#111;font-size:15px}
+.tgt i{font-size:13.5px;color:var(--cinza)}
+.tgt .tx{font-size:13px;margin-top:6px;line-height:1.4;color:var(--texto)}
+.tgt .cult{display:inline-block;margin-top:6px;font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--verde);background:var(--suave);padding:3px 8px;border-radius:6px}
+
+/* Composition */
+.comp{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:520px){.comp{grid-template-columns:1fr}}
+.comp .card{padding:0;overflow:hidden}
+.comp h4{background:var(--verde);color:#fff;font-size:18px;font-weight:800;padding:10px 16px}
+.comp ul{list-style:none;padding:10px 16px 14px;display:grid;gap:8px}
+.comp li{display:flex;justify-content:space-between;gap:10px;font-size:14.5px;border-bottom:1px solid var(--linha);padding-bottom:7px}
+.comp li:last-child{border:none}
+.comp li i{color:#111;font-weight:600}
+.comp li span{color:var(--verde);font-weight:700;white-space:nowrap;font-size:13px}
+
+/* KPIs */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media (max-width:720px){.kpis{grid-template-columns:repeat(2,1fr)}}
+.kpi{background:var(--suave);border-radius:16px;padding:16px 12px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:4px}
+.kpi svg{width:24px;height:24px;stroke:var(--verde)}
+.kpi .v{font-size:40px;font-weight:900;color:var(--verde2);line-height:1}
+.kpi .v small{font-size:15px;font-weight:700;margin-left:2px}
+.kpi .l{font-size:12px;color:var(--verde);font-weight:600;line-height:1.25}
+.crops{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.crop{display:flex;align-items:center;gap:12px;padding:14px}
+.crop .cv{font-size:26px;font-weight:900;color:var(--verde2);line-height:1}
+.crop .cv small{font-size:13px;font-weight:700}
+.crop .cn{font-size:13px;font-weight:800;text-transform:uppercase;color:#111;letter-spacing:.04em}
+.crop svg{width:36px;height:36px;stroke:var(--verde);flex:none}
+.bignum{display:flex;align-items:center;gap:12px;margin-top:14px;padding:12px 16px;border-radius:14px;background:#fff;border:1px dashed var(--limao)}
+.bignum b{font-size:44px;font-weight:900;color:var(--limao);line-height:1}
+.bignum span{font-weight:700;color:var(--verde);font-size:15px;line-height:1.2}
+
+/* Chart */
+.chart{padding:16px 14px}
+.chart .pill{display:inline-block;background:var(--verde);color:#fff;border-radius:999px;padding:4px 12px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.bars{margin-top:12px;display:grid;gap:5px}
+.bar{display:grid;grid-template-columns:30px 1fr 42px;align-items:center;gap:8px;font-size:12px}
+.bar .uf{font-weight:700;color:var(--cinza)}
+.bar .tr{height:14px;position:relative;background:#f2f5f1;border-radius:3px}
+.bar .fl{position:absolute;top:0;bottom:0;background:var(--limao);border-radius:3px}
+.bar .fl.top{background:var(--verde)}
+.bar .fl.neg{background:#d9534f}
+.bar .vl{font-weight:800;color:var(--verde);text-align:right}
+.bar .vl.neg{color:#c0392b}
+.note{font-size:12px;color:var(--cinza);margin-top:10px}
+
+/* Extra sections */
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.vsc{padding:0;overflow:hidden}
+.vsc .tag{display:inline-block;background:var(--verde);color:#fff;font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:7px 12px;border-radius:0 0 10px 0}
+.vsc ul{list-style:none;padding:12px 14px 14px;display:grid;gap:7px;font-size:13.5px}
+.vsc ul li:last-child{font-weight:800;color:#111}
+.vsc.on ul li:last-child{color:var(--verde)}
+.steps{display:grid;gap:10px}
+.step{display:flex;gap:14px;align-items:flex-start;padding:14px;border-radius:14px;background:#fafcf9;border:1px solid var(--linha)}
+.step .n{flex:none;font-size:26px;font-weight:900;color:#fff;background:var(--vivo);border-radius:10px;width:46px;height:46px;display:flex;align-items:center;justify-content:center}
+.step b{color:var(--verde);font-size:15px}
+.step p{font-size:14px;line-height:1.45;margin-top:2px}
+.manejo{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.mj{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;padding:16px 10px;border:1.5px solid var(--limao);border-radius:14px}
+.mj svg{width:30px;height:30px;stroke:var(--verde)}
+.mj b{font-size:12.5px;text-transform:uppercase;color:var(--verde);letter-spacing:.03em}
+.mj span{background:var(--verde);color:#fff;font-weight:800;border-radius:6px;padding:2px 10px;font-size:14px}
+.legend{display:flex;gap:16px;font-size:12px;font-weight:700;margin-bottom:6px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.cmp{padding:10px 0;border-bottom:1px solid var(--linha)}
+.cmph{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.cmph b{font-size:14px;color:#111;text-transform:uppercase;letter-spacing:.04em}
+.dif{background:var(--suave);color:var(--verde);font-weight:800;font-size:12.5px;padding:3px 10px;border-radius:999px}
+.bar2{display:grid;grid-template-columns:1fr 52px;gap:8px;align-items:center;font-size:13px;font-weight:800;margin-top:4px}
+.bar2 .tr{height:16px;background:#f2f5f1;border-radius:3px;position:relative}
+.bar2 .fl{position:absolute;left:0;top:0;bottom:0;border-radius:3px}
+.bar2 span{text-align:right;color:var(--cinza)}
+.sip{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:12px;font-weight:700;color:var(--verde);background:var(--suave);padding:6px 10px;border-radius:999px}
+.sip svg{width:16px;height:16px}
+.pillars{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media (max-width:520px){.pillars{grid-template-columns:1fr}}
+
+/* Composição detalhada / galeria */
+.comp h4 small{display:block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--limao)}
+.cimg{height:170px;display:flex;align-items:center;justify-content:center;padding:10px;background:linear-gradient(180deg,#fff,#f4f8f2)}
+.cimg img{max-height:100%;width:auto;object-fit:contain}
+.cdesc{font-size:14px;line-height:1.5;padding:10px 16px 0}
+.cvant{padding:4px 16px 16px}
+.cvant > b{display:block;color:var(--verde);font-size:12px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px}
+.cvant ul.chk{padding:0}
+.cvant .chk li span{white-space:normal;color:var(--texto);font-weight:400;font-size:13.5px}
+.cvant .chk li{font-size:13.5px;border:none;padding:0;justify-content:flex-start}
+.gal{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.gal .card{padding:12px;text-align:center}
+.gal img{height:180px;width:100%;object-fit:contain}
+.gal b{display:block;margin-top:6px;color:var(--verde);text-transform:uppercase;font-size:13px;letter-spacing:.05em}
+
+/* Manejo */
+.ctabs{display:flex;gap:8px;margin-top:16px}
+.ctabs a{display:flex;align-items:center;gap:8px;padding:10px 18px;border-radius:12px;border:1.5px solid var(--linha);font-weight:800;color:var(--cinza)}
+.ctabs a svg{width:20px;height:20px}
+.ctabs a.on{background:var(--verde);border-color:var(--verde);color:#fff}
+.vtag{display:inline-block;margin-left:6px;font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;background:#fff4d6;color:#9a6b00;border:1px solid #f0d48a;border-radius:5px;padding:1px 6px;vertical-align:middle;font-style:normal}
+.vbanner{display:flex;gap:10px;margin-top:18px;padding:12px 14px;border-radius:12px;background:#fffaeb;border:1px solid #f0d48a}
+.vbanner svg{width:22px;height:22px;stroke:#9a6b00;flex:none}
+.vbanner p{font-size:13px;line-height:1.45}
+.gwrap{overflow-x:auto;margin:0 -20px 0 -6px;padding:0 20px 8px 6px;-webkit-overflow-scrolling:touch}
+.gantt{display:grid;min-width:720px;row-gap:6px;column-gap:0}
+.gh{text-align:center;padding:0 2px 8px;border-bottom:2px solid var(--verde);display:flex;flex-direction:column;align-items:center}
+.gh b{font-size:12px;color:var(--verde);font-weight:800;white-space:nowrap}
+.gh span{font-size:10px;color:var(--cinza);line-height:1.15}
+.gplant{height:96px;display:flex;align-items:flex-end}
+.gcorner{border-bottom:2px solid var(--verde)}
+.gname{position:sticky;left:0;z-index:2;background:#fff;display:flex;align-items:center;gap:7px;font-size:13.5px;font-weight:800;color:#111;padding-right:6px;line-height:1.05}
+.gname i{width:4px;align-self:stretch;border-radius:3px;background:var(--c);flex:none}
+.gname .ag{font-weight:500}
+.grow{display:grid;align-items:center;background:repeating-linear-gradient(90deg,transparent 0,transparent calc(100%/8 - 1px),#eef2ee calc(100%/8 - 1px),#eef2ee calc(100%/8));min-height:30px}
+.gbar{height:24px;margin:0 3px;border-radius:7px;background:var(--c);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;padding:0 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;grid-row:1}
+.gbar.dem{background:repeating-linear-gradient(135deg,var(--c) 0 8px,color-mix(in srgb,var(--c) 70%,#fff) 8px 14px)}
+.glegend{display:flex;flex-wrap:wrap;gap:8px 14px;margin-top:12px;font-size:11.5px;font-weight:700;color:var(--cinza)}
+.glegend i{display:inline-block;width:14px;height:10px;border-radius:3px;margin-right:5px;vertical-align:0}
+.glegend i.dem{background:repeating-linear-gradient(135deg,#8a9a8f 0 4px,#cfd8cf 4px 7px)}
+.mtl{position:relative}
+.ms{display:grid;grid-template-columns:34px 1fr;gap:10px;position:relative;padding-bottom:16px}
+.ms::before{content:"";position:absolute;left:16px;top:30px;bottom:0;width:2px;background:var(--limao)}
+.ms:last-child::before{display:none}
+.msd span{width:34px;height:34px;border-radius:50%;background:var(--verde);color:#fff;font-weight:900;display:flex;align-items:center;justify-content:center;font-size:15px}
+.msb{background:#fafcf9;border:1px solid var(--linha);border-radius:16px 4px 16px 16px;padding:10px 12px 12px}
+.msh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.msh svg{width:62px;height:83px;flex:none}
+.msh b{display:block;font-size:19px;font-weight:900;color:var(--verde);line-height:1}
+.msh span{font-size:12.5px;color:var(--cinza);text-transform:uppercase;font-weight:700;letter-spacing:.04em}
+.mi2{display:flex;gap:10px;align-items:center;background:#fff;border-radius:12px;padding:8px 10px;margin-top:8px;border-left:4px solid var(--c);box-shadow:0 2px 8px rgba(0,60,25,.06)}
+.mi2 img{width:46px;height:46px;object-fit:contain;flex:none}
+.mt{font-size:16px;font-weight:800;color:#111}
+.mo{font-size:13px;line-height:1.3;margin-top:1px}
+.mc{display:flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700;color:var(--verde);margin-top:4px;text-transform:uppercase;letter-spacing:.02em}
+.mc svg{width:13px;height:13px;flex:none}
+.mcont{font-size:12.5px;color:var(--cinza);margin-top:8px}
+.mcont a{color:var(--verde);font-weight:700}
+.sems{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:560px){.sems{grid-template-columns:1fr}}
+.sem{display:flex;gap:12px;align-items:center;padding:12px}
+.sem img{width:52px;height:60px;object-fit:contain;flex:none}
+.sem b{display:block;font-size:17px;color:#111;font-weight:800}
+.sem > div > span{font-size:12.5px;line-height:1.35;display:block;margin-top:2px}
+.nav .in{grid-template-columns:repeat(6,1fr) !important}
+.nav a{font-size:9.5px;letter-spacing:0}
+
+/* Video / aviso */
+.video{border-radius:16px;overflow:hidden;background:#0b2416;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;color:#fff;text-align:center;position:relative}
+.video video{width:100%;height:100%;object-fit:contain;background:#000}
+.video .ph{padding:20px}
+.video .ph svg{width:52px;height:52px;stroke:var(--limao);margin:0 auto 8px}
+.video .ph b{display:block;font-size:16px}
+.video .ph span{font-size:13px;opacity:.75}
+.aviso{display:flex;gap:12px;padding:14px 16px;border:1.5px solid var(--limao);border-radius:14px}
+.aviso svg{width:30px;height:30px;stroke:var(--verde);flex:none}
+.aviso p{font-size:13px;line-height:1.5}
+.aviso b{color:var(--verde);text-transform:uppercase;font-size:12px;letter-spacing:.06em}
+
+/* Line page */
+.lhead{padding:28px 0 4px}
+.lhead .kick{color:var(--limao);font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:12px}
+.lhead h1{font-size:clamp(34px,8vw,52px);font-weight:900;color:#111;line-height:1}
+.lhead p{margin-top:10px;color:var(--cinza);font-size:15.5px;max-width:620px;line-height:1.55}
+.empty{padding:34px 20px;text-align:center}
+.empty svg{width:48px;height:48px;stroke:var(--limao);margin:0 auto 10px}
+.empty b{display:block;color:var(--verde);font-size:18px}
+.empty span{color:var(--cinza);font-size:14px}
+
+/* Binova */
+.bhero{padding:30px 0 10px;text-align:left}
+.bhero img{height:70px;width:auto}
+.timeline{display:grid;gap:0;position:relative;padding-left:34px}
+.timeline::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:var(--limao)}
+.tl{position:relative;padding:0 0 18px}
+.tl::before{content:"";position:absolute;left:-33px;top:4px;width:14px;height:14px;border-radius:50%;background:#fff;border:3px solid var(--verde)}
+.tl b{color:var(--verde);font-size:22px;font-weight:900}
+.tl p{font-size:14.5px;line-height:1.5}
+.group{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media (min-width:720px){.group{grid-template-columns:repeat(3,1fr)}}
+.gco{padding:14px;border-radius:14px;background:#fafcf9;border:1px solid var(--linha)}
+.gco b{display:block;color:#111;font-size:15px}
+.gco span{font-size:13px;color:var(--cinza)}
+.gco.me{background:var(--verde);border-color:var(--verde)}
+.gco.me b,.gco.me span{color:#fff}
+.contact{display:grid;gap:10px}
+.contact a,.contact div{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:14px;background:var(--suave);font-weight:700;color:var(--verde)}
+.contact svg{width:22px;height:22px;stroke:var(--verde);flex:none}
+
+.foot{margin:40px 0 10px;padding-top:18px;border-top:1px solid var(--linha);display:flex;align-items:center;justify-content:space-between;gap:12px}
+.foot img{height:28px;width:auto}
+.foot span{font-size:11px;color:var(--cinza)}
+.toast{position:fixed;left:50%;bottom:96px;transform:translateX(-50%) translateY(20px);background:#123;color:#fff;padding:10px 16px;border-radius:10px;font-size:13.5px;opacity:0;transition:.25s;pointer-events:none;z-index:40;max-width:90vw;text-align:center}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+.fade{animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<header class="top"><div class="wrap">
+  <button class="back" id="back" aria-label="Voltar"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <a href="#inicio"><img class="logo" src="img/logo.png" alt="agroceres BINOVA"></a>
+  <div class="crumb" id="crumb">Portfólio</div>
+</div></header>
+
+<main class="wrap" id="app"></main>
+
+<nav class="nav"><div class="in" id="nav"></div></nav>
+<div class="toast" id="toast"></div>
+
+<script>
+/* =========================================================
+   CONFIGURAÇÃO — preencha aqui links de folder e vídeo
+   ========================================================= */
+const FOLDERS = {
+  "kit-gammon-controle": "/_blob/cefc85759412bb2d9719aed33a7860ed",
+  "agtecmmon": "/_blob/b1a1ce4534b68c25d0b885e7478263a6",
+  "agbti": "/_blob/1c5016a844c441a849339aa9d3b05f26",
+  "agnexmmon-pro": "/_blob/b0831fa59bad989e09990a7dda02d990",
+  "agvital": "/_blob/4330e70611941e6451e5afa9bc69ff75",
+  "agenergia": "/_blob/9b85f618bf0549da18bb0527e6525f1f",
+  "agplay": "/_blob/f42eb1dae29e02a73a2959b6e1220d1d",
+  "agfiller-direct": "/_blob/d3a8b74b7eea630e39f4f011046aab2e",
+  "arqplant": "/_blob/fcfdc3ba133626c689b6d185b4d7e435",
+  "agkill": "/_blob/88ed32da2ed4ab82d2a9de32efe793c8",
+  "agsky": "/_blob/4685bc0d1054bfdca686a0091507c7c3",
+  "agsolucao-evolution": "/_blob/75ab6daa8d033173dde08347587a74be",
+  "agpreparo": "/_blob/150128347477866e0a72639b9955536d",
+  "agultrabio": "/_blob/45c92544690f2a0053fc27e1e5b257bd",
+  "kit-gammon-up": "/_blob/6df0c625377ec012d625f876091a0fc0",
+  "agplus": [ {label:"Soja", url:"/_blob/57abce54a5fa1a0852cf3b95f40db404"}, {label:"Cana", url:"/_blob/c9dcc9b0da0d66e3dc51c2ae7e48d863"} ]
+};
+const VIDEOS = {            // URL do vídeo (arquivo do app ou link externo, ex.: YouTube)
+  "kit-gammon-controle": "",
+  "agtecmmon": "",
+  "agbti": "",
+  "agnexmmon-pro": ""
+};
+
+/* ---------- Ícones (traço) ---------- */
+const I = {
+  home:'<path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/>',
+  leaf:'<path d="M5 19c0-8 5-14 15-15-1 10-7 15-15 15z"/><path d="M5 19l8-8"/>',
+  micro:'<circle cx="12" cy="12" r="8"/><circle cx="9" cy="10" r="1.6"/><circle cx="14.5" cy="9" r="1.2"/><circle cx="14" cy="14.5" r="1.8"/><circle cx="9.5" cy="15" r="1"/>',
+  drop:'<path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/><path d="M9.5 15a2.5 2.5 0 0 0 2.5 2.5"/>',
+  building:'<path d="M4 21V8l8-5 8 5v13"/><path d="M9 21v-6h6v6"/><path d="M9 10h.01M15 10h.01"/>',
+  search:'<circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/>',
+  chev:'<path d="M9 5l7 7-7 7"/>',
+  shield:'<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/>',
+  net:'<circle cx="12" cy="12" r="2.2"/><circle cx="5" cy="5" r="1.8"/><circle cx="19" cy="5" r="1.8"/><circle cx="5" cy="19" r="1.8"/><circle cx="19" cy="19" r="1.8"/><path d="M6.4 6.4l4 4M17.6 6.4l-4 4M6.4 17.6l4-4M17.6 17.6l-4-4"/>',
+  root:'<path d="M12 3v9"/><path d="M12 12c-2 2-5 2-7 5M12 12c2 2 5 2 7 5M12 12v9M12 15c-1.5 1-3 3-3 5M12 15c1.5 1 3 3 3 5"/><path d="M8 5c2 0 4 1 4 3M16 5c-2 0-4 1-4 3"/>',
+  sync:'<path d="M20 12a8 8 0 0 1-14 5.3"/><path d="M4 12a8 8 0 0 1 14-5.3"/><path d="M18 3v4h-4M6 21v-4h4"/>',
+  target:'<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/>',
+  chart:'<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',
+  money:'<circle cx="12" cy="12" r="9"/><path d="M15 9.5c-.5-1-1.6-1.5-3-1.5-1.7 0-3 .9-3 2.1 0 2.9 6 1.5 6 4.5 0 1.3-1.3 2.4-3 2.4-1.5 0-2.7-.6-3.2-1.7M12 6v2M12 16.5v1.5"/>',
+  sprout:'<path d="M12 21v-9"/><path d="M12 12C12 8 9 5 4 5c0 4 3 7 8 7z"/><path d="M12 14c0-4 3-7 8-7 0 4-3 7-8 7z"/>',
+  hand:'<path d="M7 11V6a1.5 1.5 0 0 1 3 0v4M10 10V4.5a1.5 1.5 0 0 1 3 0V10M13 10V5.5a1.5 1.5 0 0 1 3 0V12M16 11a1.5 1.5 0 0 1 3 0v3a7 7 0 0 1-7 7h-1a6 6 0 0 1-5-3l-2.5-4.5a1.5 1.5 0 0 1 2.6-1.5L7 14"/>',
+  check:'<circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.7 2.7L16 9.5"/>',
+  doc:'<path d="M6 3h8l5 5v13H6z"/><path d="M14 3v5h5M9 13h7M9 17h5"/>',
+  down:'<path d="M12 4v11M7 10l5 5 5-5M5 20h14"/>',
+  ext:'<path d="M14 4h6v6M20 4l-9 9M18 14v6H4V6h6"/>',
+  play:'<circle cx="12" cy="12" r="9"/><path d="M10 8.5l5.5 3.5-5.5 3.5z"/>',
+  alert:'<circle cx="12" cy="12" r="9"/><path d="M12 7v6M12 16.5v.5"/>',
+  bug:'<ellipse cx="12" cy="13" rx="4.5" ry="6"/><path d="M12 7V4M9 4.5l1.5 2.5M15 4.5L13.5 7M7.5 11H4M7.5 15H4.5M16.5 11H20M16.5 15h3M12 9v10"/>',
+  soy:'<path d="M7 20c-2-3-1-7 2-10s7-5 10-4c1 3-1 7-4 10s-6 6-8 4z"/><circle cx="10" cy="15" r="1.4"/><circle cx="13" cy="12" r="1.4"/><circle cx="16" cy="9" r="1.4"/>',
+  corn:'<path d="M12 21c-3-2-4-6-4-10s2-8 4-8 4 4 4 8-1 8-4 10z"/><path d="M10 7h4M9.5 10.5h5M9.5 14h5"/><path d="M12 21c-2-3-6-4-7-9M12 21c2-3 6-4 7-9"/>',
+  bean:'<path d="M9 4c-3 0-5 2.5-5 5.5S6.5 14 9 14s3 2 3 4.5S14 22 16 21c3-1 4-4 4-7.5S18 4 12 4z"/>',
+  cotton:'<path d="M12 6a3 3 0 0 1 5.5 1.6A3 3 0 0 1 19 13a3 3 0 0 1-4 3 3 3 0 0 1-6 0 3 3 0 0 1-4-3 3 3 0 0 1 1.5-5.4A3 3 0 0 1 12 6z"/><path d="M12 19v3"/>',
+  globe:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 3 2.5 15 0 18M12 3c-2.5 3-2.5 15 0 18"/>',
+  insta:'<rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.5"/><path d="M16.5 7.5h.01"/>'
+};
+const ic = (n, sw) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${sw||1.7}" stroke-linecap="round" stroke-linejoin="round">${I[n]}</svg>`;
+const icS = n => ic(n).replace('stroke="currentColor"','stroke="#006833"');
+
+/* ---------- Linhas ---------- */
+const LINHAS = [
+  { id:"biologicos", nome:"Biológicos", icon:"micro",
+    desc:"Biofungicidas, bionematicidas e bioinseticidas para o manejo de doenças, nematoides e pragas." },
+  { id:"nutricao", nome:"Nutrição", icon:"leaf",
+    desc:"Fisiológicos, aminoácidos e complexos nutricionais para vigor, tolerância a estresses e produtividade." },
+  { id:"adjuvantes", nome:"Adjuvantes", icon:"drop",
+    desc:"Adjuvantes, dispersantes e limpa-tanque para mais qualidade de calda e eficiência na aplicação." }
+];
+
+/* ---------- Produtos (conteúdo dos folders) ---------- */
+const P = [
+{
+  id:"kit-gammon-controle", linha:"biologicos",
+  nome:'Kit Gammon <span style="font-size:.55em;font-weight:800;letter-spacing:.02em">CONTROLE</span>', nomeTxt:"Kit Gammon Controle",
+  cat:"Kit biológico · doenças e nematoides",
+  resumo:"agBest + Multi T: 7 espécies de microrganismos contra doenças de solo e nematoides.",
+  slogan:"Redundância e amplificação no controle de doenças e nematoides",
+  micro:{t:"Composto por 7 espécies", d:"de diferentes microrganismos (Bacillus e Trichoderma)"},
+  img:"img/kit.webp", wide:true, thumb:"img/kit_thumb.webp",
+  sobre:[
+    "O <b>Kit Gammon Controle</b> combina os produtos <b>agBest</b> e <b>Multi T</b> em uma solução biológica completa para o manejo de doenças de solo e nematoides. A complementaridade entre suas formulações e modos de ação amplia a eficiência do controle e promove resultados mais consistentes, oferecendo mais segurança no manejo e produtividade à lavoura.",
+    "Composto por sete espécies de microrganismos — <i>Trichoderma harzianum</i>, <i>Trichoderma viride</i>, <i>Bacillus subtilis</i>, <i>Bacillus licheniformis</i>, <i>Bacillus amyloliquefaciens</i>, <i>Bacillus velezensis</i> e <i>Bacillus pumilus</i> —, oferece amplo espectro de atuação e elevada adaptabilidade às diferentes condições de cultivo, contribuindo para um manejo biológico mais eficiente e sustentável."
+  ],
+  composicao:[
+    {prod:"agBest", itens:[["Bacillus subtilis","1 cepa"],["Bacillus licheniformis","1 cepa"],["Bacillus amyloliquefaciens","1 cepa"],["Bacillus velezensis","1 cepa"],["Bacillus pumilus","1 cepa"]]},
+    {prod:"Multi T", itens:[["Trichoderma harzianum","2 cepas"],["Trichoderma viride","2 cepas"]]}
+  ],
+  destaques:[
+    {t:"Amplo espectro", i:"shield", d:"Atuação abrangente no controle das principais doenças e nematoides."},
+    {t:"Consistência de resultado", i:"net", d:"Tecnologia validada e testada safra após safra, com média de incremento de 3,4 sc/ha."},
+    {t:"Solução completa", i:"root", d:"Múltiplas funções que atuam no solo e no sistema radicular, promovendo mais segurança, produtividade e sustentabilidade."},
+    {t:"Sinergia", i:"sync", d:"7 espécies de microrganismos trabalhando de forma integrada para potencializar o desempenho no campo."}
+  ],
+  beneficios:[
+    {t:"Controle de nematoides", i:"target", d:"Menor reprodução e sobrevivência dos nematoides no solo."},
+    {t:"Maior produtividade", i:"chart", d:"Plantas saudáveis, com maior absorção de água e nutrientes."},
+    {t:"Solo protegido", i:"shield", d:"Menor ocorrência de doenças de solo e raízes mais sadias."},
+    {t:"Menor dano", i:"root", d:"Redução de estresses nas plantas e melhor desenvolvimento radicular."},
+    {t:"Maior lucratividade", i:"money", d:"Maior produtividade e retorno sobre o investimento."},
+    {t:"Sustentabilidade", i:"sprout", d:"Plantas mais fortes e sistemas mais sustentáveis."}
+  ],
+  kpis:[
+    {v:"89", u:"%", l:"Média de resultados positivos"},
+    {v:"248", u:"", l:"Áreas avaliadas"},
+    {v:"3,4", u:"sc/ha", l:"Ganho médio sobre manejo padrão"},
+    {v:"15", u:"", l:"Testes realizados em consultorias"}
+  ],
+  grafico:{ titulo:"Resultados em produtividade", sub:"Soja 2025/2026", eixo:"Incremento sacas/ha",
+    dados:[["MT",-0.9],["MG",0.0],["PA",0.1],["MS",0.2],["GO",0.3],["MT",0.7],["MT",0.9],["MT",1.0],["MS",1.4],["MT",1.5],["PA",1.8],["GO",3.0],["MT",3.0],["MT",3.0],["GO",3.1],["RS",3.1],["MS",3.5],["MG",3.8],["MT",4.1],["SP",6.3],["MT",6.7],["GO",7.1],["MT",8.1],["MS",8.2],["PA",8.6],["MT",9.9],["GO",13.5],["MG",14.3],["MS",19.2],["MT",19.3]] }
+},
+{
+  id:"agtecmmon", linha:"biologicos",
+  nome:'<span class="ag">ag</span>Tecmmon', nomeTxt:"agTecmmon",
+  cat:"Biofungicida líquido",
+  resumo:"Biofungicida multissítio com duas cepas de Bacillus velezensis para doenças foliares.",
+  slogan:"Alta proteção contra doenças foliares",
+  micro:{t:"Microrganismo", d:"Duas cepas de <i>Bacillus velezensis</i>"},
+  img:"img/tecmmon.webp", thumb:"img/tecmmon.webp",
+  sobre:[
+    "O <b>agTecmmon</b> é um biofungicida multissítio inovador com associação de duas cepas de <i>Bacillus velezensis</i> com ações distintas e complementares para controle de doenças foliares, como antracnoses, mancha-alvo e mancha-branca, proporcionando um controle com múltiplos modos de ação visando potencializar a produtividade das culturas."
+  ],
+  destaques:[
+    {t:"Múltiplos mecanismos de ação", i:"net", d:"Ação multissítio e eficiência no controle das principais doenças foliares."},
+    {t:"Praticidade na aplicação", i:"hand", d:"Formulação líquida que dispensa pré-mistura, facilita a compatibilidade em calda e reduz o risco de entupimentos."},
+    {t:"Resistência a doenças", i:"shield", d:"Menor pressão de seleção de patógenos resistentes e auxílio na redução do inóculo no solo."},
+    {t:"Sustentabilidade", i:"sprout", d:"Proteção prolongada e maior produtividade, sem período de carência e sem resíduos."}
+  ],
+  modo:[
+    "Microrganismos benéficos competindo por espaço e nutrientes na superfície foliar, ocupando o lugar de patógenos.",
+    "Induz a planta a produzir compostos de defesa contra o ataque de patógenos.",
+    "Microrganismos com efeito de antibiose no combate aos patógenos."
+  ],
+  alvos:[
+    ["Antracnose","Colletotrichum gloeosporioides"],["Antracnose","Colletotrichum lindemuthianum"],["Antracnose","Colletotrichum truncatum"],
+    ["Estria-vermelha","Acidovorax avenae"],["Cercosporiose","Cercospora coffeicola"],["Mancha-alvo","Corynespora cassiicola"],
+    ["Mancha-de-Ascochyta","Ascochyta coffeae"],["Mancha-de-Phaeosphaeria","Phaeosphaeria maydis"],["Mancha-de-Phoma","Phoma costaricensis"],["Ramularia","Ramularia areola"]
+  ].map(a=>({n:a[0],c:a[1]})),
+  esperar:["Ação multissítio","Eficiência no controle de manchas foliares","Amplo período de proteção","Auxílio na eliminação dos inóculos do solo","Formulação líquida, dispensando pré-misturas","Compatibilidade com os principais defensivos do mercado"],
+  culturas:{ titulo:"Resultado em produtividade", sub:"Incrementos médios de produtividade sobre multissítios químicos",
+    itens:[["Soja","+3,2","sc/ha","soy"],["Milho","+4,4","sc/ha","corn"],["Feijão","+1,5","sc/ha","bean"],["Algodão","+1,5","@/ha","cotton"]],
+    big:["90","campos nas principais regiões produtoras do país"] },
+  aviso:"A aplicação deve ser feita na forma de pulverização foliar, terrestre ou aérea. Os equipamentos devem estar adequados para proporcionar uma cobertura uniforme da cultura e minimizar riscos de deriva. Limitações de uso: use de acordo com as recomendações de bula/rótulo e observe as precauções necessárias. Somente usar doses recomendadas. Válido por 24 meses à temperatura ambiente. Não há necessidade de refrigeração."
+},
+{
+  id:"agbti", linha:"biologicos",
+  nome:'<span class="ag">ag</span>BTI', nomeTxt:"agBTI",
+  cat:"Bioinseticida para lagartas",
+  resumo:"Bacillus thuringiensis para o controle do complexo de lagartas.",
+  slogan:"Você no controle da lagarta!",
+  micro:{t:"Microrganismo", d:"<i>Bacillus thuringiensis</i>"},
+  img:"img/bti_hero.webp", thumb:"img/bti_pack.webp", img2:"img/bti_pack.webp",
+  alvos:[
+    {n:"Lagarta-do-cartucho", c:"Spodoptera frugiperda"},
+    {n:"Lagarta-falsa-medideira", c:"Chrysodeixis includens; sinônimo: Pseudoplusia includens"},
+    {n:"Lagarta-da-soja", c:"Anticarsia gemmatalis"},
+    {n:"Curuquerê-do-algodoeiro", c:"Alabama argillacea"}
+  ],
+  esperar:[
+    "Cepa com alta eficiência no <b>controle do complexo de lagartas</b>",
+    "Pode ser utilizado em <b>conjunto com defensivos químicos e plantas transgênicas</b> para o <b>controle de lagartas resistentes</b>",
+    "Tecnologia exclusiva contendo: cepas monitoradas, <b>alta concentração de cristais</b>, <b>formulação líquida com protetor UV</b> e alta aderência para fixação na folha"
+  ]
+},
+{
+  id:"agnexmmon-pro", linha:"biologicos",
+  nome:'<span class="ag">ag</span>Nexmmon Pro', nomeTxt:"agNexmmon Pro",
+  cat:"Bioinseticida líquido",
+  resumo:"Beauveria bassiana líquida para cigarrinha, mosca-branca, ácaro-rajado e mais.",
+  slogan:"Menos aplicação, mais controle!",
+  micro:{t:"Microrganismo", d:"<i>Beauveria bassiana</i>"},
+  img:"img/nex_hero.webp", thumb:"img/nex_hero.webp",
+  sobre:[
+    "O <b>agNexmmon Pro</b> é um inseticida biológico líquido à base do fungo entomopatogênico <i>Beauveria bassiana</i>. Ao entrar em contato com o inseto, os conídios viáveis aderem à sua superfície e germinam em 12 a 24 horas. O fungo penetra em seu organismo, causando sua morte de <b>3 a 5 dias</b> após a colonização."
+  ],
+  alvos:[
+    {n:"Cigarrinha-do-milho", cult:"Milho", tx:"Os enfezamentos pálido e vermelho do milho são doenças que podem provocar perdas de mais de 70% na produtividade das lavouras (Embrapa, 2021)."},
+    {n:"Ácaro-rajado", cult:"Soja, milho, algodão, feijão, amendoim, batata e banana", tx:"Foram observadas perdas de 4,5 sacas de soja/ha (Embrapa, 2012)."},
+    {n:"Mosca-branca", cult:"Soja, algodão e feijão", tx:"Em casos de altas densidades populacionais, pode causar perdas de até 50% da produção (Embrapa, 2006)."},
+    {n:"Bicudo-da-cana", cult:"Cana-de-açúcar", tx:"Incidência crescente com a colheita mecanizada, com prejuízos estimados em R$ 2 bilhões/ano (Embrapa, 2020)."},
+    {n:"Moleque-da-bananeira", cult:"Banana", tx:"Em algumas regiões, as altas populações de brocas nos bananais podem reduzir a produção em até 80% (Embrapa, 2003)."},
+    {n:"Broca-do-café", cult:"Café", tx:"Prejuízos como apodrecimento e queda de grãos, perda de peso e de qualidade no café beneficiado (Embrapa, 2020)."}
+  ],
+  esperar:[
+    "Formulação líquida de alta praticidade",
+    "Preparo rápido na pré-mistura e mistura de tanque",
+    "Estável em temperatura ambiente por até 7 meses — dispensa refrigeração",
+    "Conídios mais dispersos em calda — sem formação de grumos",
+    "Maior capacidade de fixação ao tegumento do inseto",
+    "Mantém os conídios livres de umidade durante o período de armazenamento",
+    "Evita a dessecação dos conídios após a aplicação",
+    "Formulação com tecnologia que garante estabilidade e persistência em campo"
+  ]
+},
+
+{
+  id:"kit-gammon-up", linha:"biologicos",
+  nome:'Kit Gammon <span style="font-size:.7em;font-weight:900">UP</span>', nomeTxt:"Kit Gammon UP",
+  cat:"Otimizador biológico de solo",
+  resumo:"Full-P + Multi T: 6 microrganismos e 11 cepas para fertilidade, enraizamento e vigor.",
+  slogan:"Ative o potencial máximo do solo!",
+  micro:{t:"Composto por 6 microrganismos", d:"e 11 cepas diferentes (Full-P + Multi T)"},
+  img:"img/kitup.webp", thumb:"img/kitup.webp",
+  sobre:["O <b>Kit Gammon UP</b> combina dois produtos biológicos, com microrganismos e cepas que promovem o equilíbrio da microbiota do solo, melhorando a fertilidade, o enraizamento, o vigor e a sanidade das culturas. Sua composição proporciona amplo espectro de atuação e adaptação a diferentes ambientes."],
+  composicao:[
+    {prod:"Full-P", tag:"Bioinoculante · Maior eficiência nutricional", img:"img/kitup_fullp.webp",
+     desc:"O Full-P disponibiliza à planta o fósforo imobilizado no solo, aumentando a eficiência da adubação fosfatada, potencializando a absorção de nutrientes e proporcionando maior retorno sobre o investimento.",
+     itens:[["Azospirillum brasilense","1 cepa"],["Pseudomonas fluorescens","1 cepa"],["Bacillus megaterium","1 cepa"]],
+     vant:["Solubilização do fósforo retido ao cálcio, alumínio e ferro (ácidos orgânicos)","Mineralização do fósforo presente na matéria orgânica (enzimas)","Promoção de crescimento radicular (fitormônios)","Aumento da absorção de água e nutrientes","Maior produtividade da cultura"]},
+    {prod:"Multi T", tag:"Bioinoculante · Maior disponibilidade de nutrientes", img:"img/kitup_multit.webp",
+     desc:"O Multi T é um bioinoculante que combina espécies de <i>Trichoderma</i> com ações complementares para aumentar a disponibilidade de nutrientes no solo, favorecer o desenvolvimento das plantas e potencializar a produtividade das culturas.",
+     itens:[["Trichoderma harzianum","4 cepas"],["Trichoderma asperellum","3 cepas"],["Trichoderma koningiopsis","1 cepa"]],
+     vant:["Redução de estresses nas plantas e melhor desenvolvimento radicular","Plantas saudáveis, com maior absorção de água e nutrientes","Plantas mais fortes e sistemas mais sustentáveis","Maior produtividade e retorno sobre o investimento","Efeito residual prolongado"]}
+  ],
+  beneficios:[
+    {t:"Solubilização de nutrientes", i:"drop", d:"Maior disponibilidade de nutrientes, principalmente fósforo."},
+    {t:"Maior produtividade", i:"chart", d:"Melhor desenvolvimento e estande da planta."},
+    {t:"Crescimento radicular", i:"root", d:"Promove maior vigor e enraizamento."},
+    {t:"Maior lucratividade", i:"money", d:"Maior produtividade e retorno sobre o investimento."},
+    {t:"Sustentabilidade", i:"sprout", d:"Plantas mais fortes e sistemas mais sustentáveis."}
+  ]
+},
+
+/* ===================== NUTRIÇÃO ===================== */
+{
+  id:"agvital", linha:"nutricao",
+  nome:'<span class="ag">ag</span>Vital', nomeTxt:"agVital",
+  cat:"Fisiológico",
+  resumo:"Fitormônios, L-triptofano e micronutrientes para vigor, enraizamento e nodulação.",
+  slogan:"Vigor que impulsiona o desenvolvimento",
+  micro:{t:"Composição", d:"Aditivos fisiológicos + Co, Zn, Ni e Mo"},
+  img:"img/vital.webp", thumb:"img/vital.webp",
+  sobre:["Com o <b>agVital</b>, a ação sinérgica dos nutrientes e aditivos fisiológicos favorece a germinação e acelera a emergência, além de promover vigor e uniformidade ao longo do desenvolvimento vegetativo, mesmo em condições de estresse."],
+  composicao:[
+    {prod:"Aditivos fisiológicos", plain:true, itens:[["Fitormônios","Auxina · Citocinina · Giberelina"],["Glicina betaína",""],["L-triptofano","Precursor de auxina"],["Compostos orgânicos","Ácido fúlvico e outros"]]},
+    {prod:"Nutrientes", plain:true, itens:[["Cobalto",""],["Zinco",""],["Níquel",""],["Molibdênio",""],["Suporte à nodulação",""]]}
+  ],
+  destaques:[
+    {t:"Promotor de crescimento", i:"sprout", d:"O agVital contém fitormônios que favorecem o desenvolvimento da planta."},
+    {t:"Melhor enraizamento", i:"root", d:"Contém L-triptofano, precursor da auxina, que estimula a divisão e a expansão celular e o desenvolvimento das raízes."},
+    {t:"Combate aos estresses abióticos", i:"shield", d:"Preserva a integridade celular e favorece o crescimento da planta."},
+    {t:"Suporte à nodulação e FBN", i:"net", d:"Fornece cobalto, molibdênio, níquel e zinco desde o tratamento de sementes, garantindo esses micronutrientes para a formação de nódulos viáveis e o início eficiente da Fixação Biológica de Nitrogênio (FBN)."}
+  ],
+  manejo:[["Tratamento de sementes",""],["Sulco de plantio",""],["Aplicação foliar","V4"]],
+  esperar:["Estande uniforme e plantas mais vigorosas","Maior volume de raízes","Maior eficiência no processo de fixação biológica de nitrogênio","Maior tolerância a estresses abióticos","Maior desenvolvimento","Maior produtividade"]
+},
+{
+  id:"agenergia", linha:"nutricao",
+  nome:'<span class="ag">ag</span>Energia', nomeTxt:"agEnergia",
+  cat:"Aminoácidos de efeito imediato",
+  resumo:"Complexo de aminoácidos e nutrientes para tolerância e recuperação sob estresse.",
+  slogan:"Resposta rápida ao estresse",
+  micro:{t:"Composição", d:"Complexo de aminoácidos e nutrientes"},
+  img:"img/energia.webp", thumb:"img/energia.webp",
+  sobre:["<b>Aminoácidos que fortalecem e regeneram culturas sob estresses.</b> O <b>agEnergia</b> é um complexo de aminoácidos e nutrientes que aumenta a tolerância das plantas a estresses bióticos e abióticos, como seca, calor e pressão de pragas. Sua ação favorece a recuperação da lavoura e a manutenção do desenvolvimento, preservando o potencial produtivo."],
+  esperar:["Evita plantas estressadas por aplicação de defensivos ou desafios climáticos","Recupera plantas em condições de estresse","Reduz perdas do potencial produtivo","Alonga as raízes e aumenta a área foliar, permitindo maior acesso a nutrientes do solo e síntese/acúmulo de energia na planta","Fornece aminoácidos essenciais para atingir altas produtividades","Aumenta a produtividade"]
+},
+{
+  id:"agplay", linha:"nutricao",
+  nome:'<span class="ag">ag</span>Play', nomeTxt:"agPlay",
+  cat:"Fisiológico de efeito imediato",
+  resumo:"Freia a senescência e reativa o crescimento do canavial no pós-seca.",
+  slogan:"Rápida retomada no pós-seca",
+  micro:{t:"Cultura", d:"Cana-de-açúcar"},
+  img:"img/play.webp", thumb:"img/play.webp",
+  sobre:["O <b>agPlay</b> é um produto fisiológico desenvolvido para <b>frear os processos de senescência</b> e <b>reativar o metabolismo do crescimento</b> pós-seca do canavial."],
+  passosTitulo:"Modo de ação",
+  passos:[["Neutraliza a ação do estresse","e restabelece o balanço hormonal"],["Aumenta a energia fotossintética","e restaura o fluxo metabólico"],["Estimula o desenvolvimento","de raízes ativas e folhas novas"]],
+  esperar:["Maior eficiência fisiológica após os estresses abióticos","Maior potencial produtivo do canavial","Maior incremento em <b>TCH</b>: mais colmos e maior peso","Maior acúmulo de <b>ATR</b>: melhor rendimento industrial"]
+},
+{
+  id:"agfiller-direct", linha:"nutricao",
+  nome:'<span class="ag">ag</span>Filler <span style="font-size:.5em;font-weight:800">DIRECT</span>', nomeTxt:"agFiller Direct",
+  cat:"Complexo de nutrientes enriquecido com aditivos",
+  resumo:"N, P, K, Mg, S, B e Mo com L-aminoácidos e quelantes para enchimento de grãos.",
+  slogan:"Maior sanidade e desenvolvimento",
+  micro:{t:"Composição", d:"N, P, K, Mg, S, B e Mo + L-aminoácidos e agentes quelantes"},
+  img:"img/filler.webp", thumb:"img/filler.webp",
+  sobre:["O <b>agFiller Direct</b> é um complexo nutricional com L-aminoácidos e agentes quelantes, contendo <b>N, P, K, Mg, S, B e Mo</b>. Eleva a produção de fotoassimilados e intensifica a mobilização de açúcares no floema, sustentando o enchimento de grãos/frutos nas fases finais e aumentando produtividade e qualidade."],
+  composicao:[
+    {prod:"Nutrientes", plain:true, itens:[["Nitrogênio","N"],["Fósforo","P"],["Potássio","K"],["Magnésio","Mg"],["Enxofre","S"],["Boro","B"],["Molibdênio","Mo"]]},
+    {prod:"Aditivos fisiológicos", plain:true, itens:[["Agentes quelantes",""],["L-aminoácidos",""]]}
+  ],
+  destaques:[
+    {t:"Compatibilidade de mistura", i:"sync", d:"Os aditivos quelantes tornam as formulações mais estáveis na calda e facilitam a entrada dos nutrientes na planta."},
+    {t:"Solubilidade", i:"drop", d:"Alta solubilidade e estabilidade conferem maior eficiência na absorção dos nutrientes pela folha e melhor eficácia das caldas de pulverização."},
+    {t:"Enchimento de grãos", i:"soy", d:"O alto aproveitamento dos nutrientes e aditivos favorece a absorção e a translocação de açúcares e ácidos orgânicos para o dreno principal, potencializando o enchimento de grãos e frutos."},
+    {t:"Maior produtividade", i:"chart", d:"Aditivos fisiológicos e balanço de nutrientes promovem maior translocação de fotoassimilados para o grão, melhor assimilação de nitrogênio e maior atividade fotossintética."}
+  ],
+  esperar:["Mais energia para produção de fotoassimilados","Maior eficiência na translocação de fotoassimilados","Maior peso e qualidade de grãos/frutos","Maior produtividade"]
+},
+{
+  id:"arqplant", linha:"nutricao",
+  nome:'ArqPlant<sup style="font-size:.35em;vertical-align:top">®</sup>', nomeTxt:"ArqPlant",
+  cat:"Estruturador fisiológico",
+  resumo:"Otimiza a arquitetura de soja e feijão: mais engalhamento e produtividade.",
+  slogan:"Arquitetura inteligente!",
+  micro:{t:"Culturas", d:"Soja e feijão — fase vegetativa"},
+  img:"img/arqplant.webp", thumb:"img/arqplant.webp",
+  sobre:["O <b>ArqPlant®</b> é um produto fisiológico de alta performance enriquecido com nutrientes. Desenvolvido para otimizar a regulação da arquitetura vegetal e fornecer elementos essenciais durante a fase vegetativa de culturas de soja e feijão."],
+  destaquesTitulo:"Componentes e benefícios",
+  destaques:[
+    {t:"Nutrição", i:"leaf", d:"Balanço nutricional completo com magnésio, nitrogênio, manganês, zinco, enxofre e boro, para maximizar a fotossíntese e a formação de novos tecidos desde a base."},
+    {t:"Estresse", i:"shield", d:"Manganês, zinco e aditivos como GABA, fenilalanina, fitormônios e aminoácidos atuam no processo antioxidante, elevam a capacidade fotossintética e protegem as células contra estresses abióticos."},
+    {t:"Arquitetura", i:"root", d:"Inibe temporariamente a ação da estrigolactona, preservando a citocinina nas gemas laterais, o que estimula maior engalhamento e desenvolvimento de ramos."}
+  ],
+  modoComparativo:{ sem:["Citocinina","Auxina","Estrigolactona ativa","→ Inibição da brotação lateral"], com:["Citocinina","Auxina","Estrigolactona suprimida","→ Brotação da gema lateral"] },
+  esperar:["Maior engalhamento","Maior tolerância ao estresse abiótico","Maior atividade fotossintética","Maior produtividade"],
+  comparativo:{ titulo:"Resultados", sub:"Safra 2023/24 · produtividade (sacas/ha)",
+    dados:[["Minas Gerais",57.03,61.84],["Mato Grosso",46.47,48.89],["São Paulo",79.58,83.05]],
+    nota:"*Resultados médios obtidos em cada região. *Testemunha: produto concorrente que também contribui para o engalhamento." }
+},
+
+{
+  id:"agplus", linha:"nutricao",
+  nome:'<span class="ag">ag</span>Plus', nomeTxt:"agPlus",
+  cat:"Fisiológico enriquecido com nutrientes",
+  resumo:"Aditivos fisiológicos + 6 nutrientes para raiz, brotação e tolerância a estresses. Soja e cana.",
+  slogan:"Maior desenvolvimento e eficiência reprodutiva",
+  micro:{t:"Culturas", d:"Soja e cana-de-açúcar"},
+  img:"img/agplus.webp", thumb:"img/agplus.webp",
+  galeria:[{img:"img/agplus_soja.webp", t:"Soja"},{img:"img/agplus_cana.webp", t:"Cana-de-açúcar"}],
+  sobre:["O <b>agPlus</b> é um produto fisiológico enriquecido com nutrientes. Produto completo desenvolvido para atuar no metabolismo da planta, resultando em maior desenvolvimento e aumentando a tolerância em condições adversas, como estresse hídrico e fitotoxicidade."],
+  composicao:[
+    {prod:"Aditivos fisiológicos", plain:true, itens:[["Agentes quelantes",""],["Extrato de algas",""],["L-aminoácidos",""],["Poliflavonoides",""],["Pentoses",""]]},
+    {prod:"Nutrientes", plain:true, itens:[["Nitrogênio","N"],["Enxofre","S"],["Boro","B"],["Manganês","Mn"],["Molibdênio","Mo"],["Zinco","Zn"]]}
+  ],
+  destaques:[
+    {t:"Desenvolvimento radicular", i:"root", d:"A combinação dos aditivos e nutrientes proporciona um equilíbrio fisiológico que estimula a síntese de auxina, promovendo maior desenvolvimento de raízes."},
+    {t:"Compatibilidade de mistura", i:"sync", d:"A elevada carga de agentes quelantes garante a estabilidade e a eficiência na absorção ativa dos seis nutrientes incluídos."},
+    {t:"Perfilhamento", i:"sprout", d:"Estimula novas brotações, pela ação sinérgica entre extrato de algas, aminoácidos precursores específicos, flavonoides, pentoses e nutrientes essenciais."},
+    {t:"Redução dos efeitos do estresse", i:"shield", d:"Aditivos que auxiliam na proteção do aparelho fotossintético e no combate a elementos tóxicos do metabolismo da planta, além de estresses térmico, salino e hídrico."},
+    {t:"ATR", i:"leaf", d:"Os aditivos potencializam os processos da fotossíntese e a produção de açúcares, fundamentais para o aumento do ATR."},
+    {t:"Maior produtividade", i:"chart", d:"Aditivos fisiológicos e balanço de nutrientes promovem maior desenvolvimento radicular, mais eficiência na produção e acúmulo de energia e maior tolerância aos diversos tipos de estresse."}
+  ],
+  esperar:["Maior desenvolvimento radicular","Maior perfilhamento/brotação","Maior desenvolvimento vegetativo","Maior resistência a situações de estresse","Maior longevidade","Maior sanidade","Maior ATR e produtividade"]
+},
+
+/* ===================== ADJUVANTES ===================== */
+{
+  id:"agkill", linha:"adjuvantes",
+  nome:'<span class="ag">ag</span>Kill', nomeTxt:"agKill",
+  cat:"Adjuvante",
+  resumo:"Mais eficiência e segurança nas dessecações, com calda condicionada e gotas uniformes.",
+  slogan:"Qualidade na calda, eficiência no alvo",
+  micro:{t:"Indicação", d:"Dessecações"},
+  img:"img/kill.webp", thumb:"img/kill.webp",
+  sobre:["O <b>agKill</b> é uma solução que agrega eficiência e segurança às dessecações. Sua formulação exclusiva melhora o condicionamento da calda, além de proporcionar gotas mais uniformes.",
+         "O resultado é uma aplicação de maior qualidade, com <b>melhor aproveitamento dos herbicidas</b> e máxima entrega dos ingredientes ativos ao alvo."],
+  esperar:["Efeito adesivo","Melhora da qualidade da água","Menos perdas por espuma e deriva","Maior homogeneidade de calda","Cobertura mais uniforme das gotas","Maior eficiência dos insumos"]
+},
+{
+  id:"agsky", linha:"adjuvantes",
+  nome:'<span class="ag">ag</span>Sky', nomeTxt:"agSky",
+  cat:"Adjuvante",
+  resumo:"Adjuvante de alta performance: absorção, cobertura e penetração no baixeiro.",
+  slogan:"Maior eficiência na aplicação",
+  micro:{t:"Indicação", d:"Todas as aplicações agrícolas"},
+  img:"img/sky.webp", thumb:"img/sky.webp",
+  sobre:["O <b>agSky</b> é um adjuvante de alta performance desenvolvido para elevar o potencial de todas as aplicações agrícolas. Sua tecnologia exclusiva promove maior afinidade com a cutícula foliar, favorecendo a absorção e a translocação dos produtos aplicados.",
+         "Além disso, otimiza o espectro de gotas, proporcionando maior cobertura do alvo e melhor distribuição da aplicação, inclusive com excelente <b>penetração no baixeiro</b> das culturas. O resultado é mais eficiência, segurança e aproveitamento dos defensivos."],
+  esperar:["Efeito espalhante adesivo","Redução de perdas por espuma e deriva","Maior homogeneidade de calda","Cobertura mais uniforme das gotas","Maior eficiência dos insumos, mesmo em condições adversas"]
+},
+{
+  id:"agsolucao-evolution", linha:"adjuvantes", sip:true,
+  nome:'<span class="ag">ag</span>Solução <span style="font-size:.5em;font-weight:800">EVOLUTION</span>', nomeTxt:"agSolução Evolution",
+  cat:"Solubilizador e dispersante",
+  resumo:"Dispersante líquido que neutraliza reações e evita grumos em misturas de tanque.",
+  slogan:"Neutraliza reações, potencializa resultados!",
+  micro:{t:"Indicação", d:"Misturas de tanque, UBV e caldas pesadas"},
+  img:"img/solucao.webp", thumb:"img/solucao.webp",
+  sobre:["O <b>agSolução Evolution</b> é um dispersante líquido de última geração, projetado para proporcionar facilidade de manuseio e aplicação. Garante estabilidade e homogeneidade excepcionais em misturas de diversos produtos, assegurando uma aplicação uniforme.",
+         "Com o agSolução Evolution, você elimina a dispersão inadequada e previne alterações físicas e químicas na calda."],
+  destaquesTitulo:"Modo de ação",
+  destaques:[
+    {t:"Ação preventiva", i:"shield", d:"Evita a formação de grumos e a separação da mistura, reduzindo o acúmulo de resíduos no pulverizador e o entupimento de filtros e bicos."},
+    {t:"Ação corretiva", i:"sync", d:"Quando a mistura apresenta grumos ou separação, auxilia na dispersão dos produtos e na recuperação da uniformidade da calda, favorecendo uma aplicação mais homogênea."}
+  ],
+  esperar:["Age nas caldas de pulverização <b>neutralizando reações</b> entre as diversas moléculas, evitando interações entre elas","Impede a formação de <b>resíduos ou grumos</b> em misturas problemáticas","Fácil manuseio (líquido) e indicado para <b>UBV e caldas pesadas</b>","Evita entupimento de bicos e filtros","Ativa o metabolismo da planta, otimizando a aplicação","Redutor de pH e neutralizante de cátions livres","Efeito quelante dos minerais contidos na água"]
+},
+{
+  id:"agpreparo", linha:"adjuvantes", sip:true,
+  nome:'<span class="ag">ag</span>Preparo', nomeTxt:"agPreparo",
+  cat:"Limpa-tanque e dispersante",
+  resumo:"Limpa e desincrusta pulverizadores, neutralizando resíduos fitotóxicos.",
+  slogan:"Limpeza completa, pulverização sem falhas",
+  micro:{t:"Indicação", d:"Limpeza e descontaminação de pulverizadores"},
+  img:"img/preparo.webp", thumb:"img/preparo.webp",
+  sobre:["O <b>agPreparo</b> é o limpador de tanque e dispersante de alto desempenho da Agroceres Binova. Limpa e desincrusta os componentes dos pulverizadores, eliminando e neutralizando resíduos com potencial de provocar fitotoxicidade na lavoura e evitando entupimentos de bicos e filtros. Isso aumenta consideravelmente a vida útil dos pulverizadores."],
+  esperar:["Limpa e desincrusta os componentes dos pulverizadores","Elimina e neutraliza resíduos com potencial de fitotoxicidade na lavoura","Evita o entupimento de bicos e filtros dos pulverizadores","Promove hidrólise alcalina das moléculas presentes dentro dos equipamentos","Evita o desgaste prematuro das pontas de pulverização e a sobrecarga do sistema hidráulico do pulverizador"],
+  passosTitulo:"Procedimento de limpeza e descontaminação",
+  passos:[
+    ["Remoção de pontas e peneiras","Retire todas as pontas e peneiras. Coloque-as em um balde com 10 litros de água e adicione 1 litro de agPreparo. Deixe de molho até o final da limpeza do equipamento."],
+    ["Eliminação de resíduos","Remova qualquer resíduo de produtos fitossanitários presente no equipamento antes de inserir o agPreparo."],
+    ["Preparação da limpeza","Encha o equipamento com o máximo de água possível. Com o agitador ligado, adicione 200 mL de agPreparo para cada 100 litros de água. Mantenha o agitador ligado por 50 a 60 minutos."],
+    ["Circulação da solução","Ligue a barra do pulverizador e deixe a solução com agPreparo circular por todo o sistema."],
+    ["Eliminação da solução","Descarte a solução por 15 a 20 minutos, seção por seção, até atingir 50% do volume do tanque. Descarte o restante e enxágue o equipamento com água usando um esguicho."],
+    ["Limpeza das pontas e filtros","Retorne ao balde com as pontas e peneiras. Use bucha e escova para remover resíduos e a solução do balde para lavar os filtros. Enxágue com água."],
+    ["Reinstalação","Recoloque as pontas e filtros no equipamento."]
+  ],
+  aviso:"<b>Recomendação adicional — incrustação severa:</b> se o tanque estiver com incrustação severa, após a limpeza inicial deixe uma nova solução com agPreparo no tanque por 8 a 10 horas e repita todo o processo de limpeza."
+},
+{
+  id:"agultrabio", linha:"adjuvantes", sip:true,
+  nome:'<span class="ag">ag</span>UltraBio', nomeTxt:"agUltraBio",
+  cat:"Adjuvante de precisão",
+  resumo:"Para herbicidas, fungicidas, inseticidas e biológicos — dispensa óleo na calda.",
+  slogan:"Direto no alvo, direto no resultado!",
+  micro:{t:"Indicação", d:"Herbicidas, fungicidas, inseticidas e biológicos"},
+  img:"img/ultrabio.webp", thumb:"img/ultrabio.webp",
+  sobre:["O <b>agUltraBio</b> é um <b>adjuvante de precisão</b> indicado para a aplicação de herbicidas, fungicidas, inseticidas e biológicos.",
+         "Possui pH levemente ácido, elevada capacidade de proteção de gotas e poder penetrante, e preserva a viabilidade dos microrganismos e da calda.",
+         "As aplicações com agUltraBio <b>não precisam da adição de óleos à calda</b>, tornando o processo mais prático, rápido e econômico."],
+  destaquesTitulo:"Como atua",
+  destaques:[
+    {t:"Tratamento da calda", i:"drop", d:"Reduz o pH para uma faixa mais adequada e tem ação emulsificante, homogeneizando a mistura. Neutraliza cátions livres que podem causar incompatibilidades físico-químicas."},
+    {t:"Tratamento da gota", i:"shield", d:"Óleo emulsionado e outros ativos protegem a gota, minimizando a evaporação e protegendo os produtos biológicos. Reduz perdas por deriva durante a aplicação."},
+    {t:"Impacto na folha", i:"leaf", d:"O efeito espalhante permite maior área de cobertura, com maior eficiência da aplicação e maior absorção dos produtos presentes na calda."}
+  ],
+  esperar:["Leve redução de pH. Quelante de cátions livres","Menor risco de cristalização e volatilização","Maior área de contato e eficiência sobre o alvo","Partículas menores: maior facilidade de penetração sem agressão da célula","Não produz “quebra de calda”. Compatibilidade entre formulação e produtos biológicos","Menor deriva, maior depósito sobre o alvo","Aumenta a capacidade operacional, permitindo trabalhar em condições subótimas","Maior translocação dos fitossanitários","Aplicação mais eficiente. Menos desperdício"]
+}
+];
+
+/* ---------- Helpers ---------- */
+const $ = s => document.querySelector(s);
+const app = $('#app');
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const strip = s => s.replace(/<[^>]+>/g,'');
+const norm = s => strip(s).normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
+function head(icon, t, sub){ return `<div class="h">${ic(icon,1.9)}<span>${t}</span></div><div class="hbar"></div>${sub?`<div class="sub">${sub}</div>`:''}`; }
+function toast(m){ const t=$('#toast'); t.textContent=m; t.classList.add('on'); clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove('on'),2600); }
+function foot(){ return `<div class="foot"><img src="img/logo.png" alt="agroceres BINOVA"><span>Uso interno · Time comercial</span></div>`; }
+
+function pcard(p){
+  return `<a class="card pcard" href="#${p.id}">
+    <div class="ph"><img src="${p.thumb}" alt="${esc(p.nomeTxt)}" loading="lazy"></div>
+    <div class="pb"><div class="cat caps">${p.cat}</div><div class="nm">${p.nome}</div><div class="ds">${p.resumo}</div></div></a>`;
+}
+
+/* ---------- Views ---------- */
+function vHome(){
+  const lines = LINHAS.map(l=>{
+    const n = P.filter(p=>p.linha===l.id).length;
+    return `<a class="card line" href="#${l.id}"><div class="ic">${ic(l.icon)}</div>
+      <div><h3>${l.nome}</h3><p>${l.desc}</p><span class="count ${n?'':'soon'}">${n?n+' produto'+(n>1?'s':''):'Em breve'}</span></div>
+      <div class="go">${ic('chev',2.2)}</div></a>`;
+  }).join('');
+  return `<section class="hero fade">
+    <div class="kick">Portfólio comercial</div>
+    <h1>Tudo o que você precisa <b>para vender</b>, na palma da mão.</h1>
+    <p>Informações técnicas, folders e vídeos de cada produto Agroceres Binova.</p>
+    <div class="search">${ic('search',2)}<input id="q" type="search" placeholder="Buscar produto, alvo ou microrganismo…" autocomplete="off"></div>
+    <div class="results" id="res"></div>
+  </section>
+  <section class="lines">
+    <a class="card line" href="#manejo" style="border:1.5px solid var(--limao)"><div class="ic">${ic('sprout')}</div>
+      <div><h3>Manejo por cultura</h3><p>Soja e milho: o produto certo em cada estádio da lavoura.</p><span class="count">Novo</span></div><div class="go">${ic('chev',2.2)}</div></a>
+    ${lines}
+    <a class="card line binova" href="#binova"><div class="ic">${ic('building')}</div>
+      <div><h3>Sobre a Agroceres Binova</h3><p>Quem somos, história e Grupo Agroceres.</p></div><div class="go">${ic('chev',2.2)}</div></a>
+  </section>${foot()}`;
+}
+function bindSearch(){
+  const q=$('#q'), res=$('#res'); if(!q) return;
+  q.addEventListener('input',()=>{
+    const t=norm(q.value.trim()); if(t.length<2){res.innerHTML='';return;}
+    const hits=P.filter(p=>{
+      const hay=norm([p.nomeTxt,p.cat,p.resumo,p.slogan,p.micro.d,(p.alvos||[]).map(a=>a.n+' '+(a.c||'')+' '+(a.cult||'')).join(' '),(p.composicao||[]).map(c=>c.itens.map(i=>i[0]).join(' ')).join(' ')].join(' '));
+      return hay.includes(t);
+    });
+    res.innerHTML = hits.length ? hits.map(p=>`<a class="card line" style="min-height:0;padding:12px 14px" href="#${p.id}">
+        <img src="${p.thumb}" alt="" style="width:54px;height:54px;object-fit:contain;flex:none">
+        <div><div class="caps" style="color:var(--limao);font-size:10.5px">${p.cat}</div><h3 style="font-size:18px">${p.nome}</h3></div><div class="go">${ic('chev',2.2)}</div></a>`).join('')
+      : `<div class="muted" style="font-size:14px;padding:6px 2px">Nenhum produto encontrado para “${esc(q.value)}”.</div>`;
+  });
+}
+
+function vLinha(l){
+  const ps=P.filter(p=>p.linha===l.id);
+  return `<section class="lhead fade"><div class="kick">Linha</div><h1>${l.nome}</h1><p>${l.desc}</p></section>
+  <section class="sec">${ps.length?`<div class="pgrid">${ps.map(pcard).join('')}</div>`:
+   `<div class="card empty">${ic('sprout')}<b>Produtos em cadastro</b><span>Esta linha estará disponível em breve.</span></div>`}</section>${foot()}`;
+}
+
+function vProduto(p){
+  const sec=[];
+  const jump=[];
+  const add=(id,label,html)=>{ jump.push([id,label]); sec.push(`<section class="sec" id="s-${id}">${html}</section>`); };
+
+  if(p.sobre) add('sobre','Sobre', head('target','Sobre o produto') + p.sobre.map(t=>`<p class="txt">${t}</p>`).join(''));
+
+  if(p.composicao) add('composicao','Composição', head(p.linha==='biologicos'?'micro':'leaf','Composição', p.linha==='biologicos'?'Microrganismos e cepas de cada produto do kit':'') +
+    `<div class="comp">${p.composicao.map(c=>`<div class="card"><h4>${c.prod}${c.tag?`<small>${c.tag}</small>`:''}</h4>${c.img?`<div class="cimg"><img src="${c.img}" alt="" loading="lazy"></div>`:''}${c.desc?`<p class="cdesc">${c.desc}</p>`:''}<ul>${c.itens.map(i=>c.plain?`<li><b style="color:#111">${i[0]}</b><span>${i[1]}</span></li>`:`<li><i>${i[0]}</i><span>${i[1]}</span></li>`).join('')}</ul>${c.vant?`<div class="cvant"><b>Vantagens</b><ul class="chk">${c.vant.map(v=>`<li><span>${v}</span></li>`).join('')}</ul></div>`:''}</div>`).join('')}</div>`);
+
+  if(p.galeria) add('culturas','Culturas', head('sprout','Culturas') + `<div class="gal">${p.galeria.map(g=>`<div class="card"><img src="${g.img}" alt="${esc(g.t)}" loading="lazy"><b>${g.t}</b></div>`).join('')}</div>`);
+
+  if(p.destaques){ const dt=p.destaquesTitulo||'Diferenciais'; add('diferenciais',dt, head('check',dt) +
+    `<div class="grid2 stack">${p.destaques.map(d=>`<div class="card feat"><span class="tag">${d.t}</span><div class="fb">${ic(d.i,1.5)}<p>${d.d}</p></div></div>`).join('')}</div>`); }
+
+  if(p.modoComparativo){ const m=p.modoComparativo; add('modo','Modo de ação', head('sync','Modo de ação') +
+    `<div class="vs"><div class="card vsc"><span class="tag" style="background:#8a8f8b">Sem ${esc(p.nomeTxt)}</span><ul>${m.sem.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+     <div class="card vsc on"><span class="tag">Com ${esc(p.nomeTxt)}</span><ul>${m.com.map(x=>`<li>${x}</li>`).join('')}</ul></div></div>`); }
+
+  if(p.modo) add('modo','Modo de ação', head('sync','Modo de ação') + `<ul class="chk">${p.modo.map(m=>`<li><span>${m}</span></li>`).join('')}</ul>`);
+
+  if(p.passos){ const pt=p.passosTitulo||'Passo a passo'; add('passos', pt==='Modo de ação'?'Modo de ação':'Procedimento', head(pt==='Modo de ação'?'sync':'check',pt) +
+    `<div class="steps">${p.passos.map((s,i)=>`<div class="step"><span class="n">${String(i+1).padStart(2,'0')}</span><div><b>${s[0]}</b><p>${s[1]}</p></div></div>`).join('')}</div>`); }
+
+  if(p.manejo) add('manejo','Manejo', head('sprout','Manejo recomendado') +
+    `<div class="manejo">${p.manejo.map(m=>`<div class="mj">${ic(m[0].includes('foliar')?'leaf':'sprout',1.6)}<b>${m[0]}</b>${m[1]?`<span>${m[1]}</span>`:''}</div>`).join('')}</div>`);
+
+  if(p.alvos) add('alvos','Alvos', head('bug','Principais alvos') +
+    `<div class="targets">${p.alvos.map(a=>`<div class="tgt"><b>${a.n}</b>${a.c?`<i>(${a.c})</i>`:''}${a.cult?`<div class="cult">${a.cult}</div>`:''}${a.tx?`<div class="tx">${a.tx}</div>`:''}</div>`).join('')}</div>`);
+
+  if(p.beneficios) add('esperar','O que esperar', head('check','O que esperar do produto') +
+    `<div class="grid3">${p.beneficios.map(b=>`<div class="card ben">${ic(b.i,1.5)}<b>${b.t}</b><span>${b.d}</span></div>`).join('')}</div>`);
+  else if(p.esperar) add('esperar','O que esperar', head('check','O que esperar do produto') + `<ul class="chk">${p.esperar.map(m=>`<li><span>${m}</span></li>`).join('')}</ul>`);
+
+  if(p.kpis || p.grafico || p.culturas || p.comparativo){
+    let h='';
+    if(p.comparativo){
+      const c=p.comparativo, mx=Math.max(...c.dados.map(d=>d[2]));
+      h+= head('chart',c.titulo,c.sub) + `<div class="card chart"><div class="legend"><span><i style="background:#cfd8cf"></i>Testemunha*</span><span><i style="background:var(--verde)"></i>${esc(p.nomeTxt)}</span></div>
+        ${c.dados.map(d=>{const dif=(d[2]-d[1]).toFixed(2).replace('.',','); const f=v=>v.toFixed(2).replace('.',',');
+          return `<div class="cmp"><div class="cmph"><b>${d[0]}</b><span class="dif">+${dif} sc/ha</span></div>
+          <div class="bar2"><div class="tr"><div class="fl" style="width:${d[1]/mx*100}%;background:#cfd8cf"></div></div><span>${f(d[1])}</span></div>
+          <div class="bar2"><div class="tr"><div class="fl" style="width:${d[2]/mx*100}%;background:var(--verde)"></div></div><span style="color:var(--verde)">${f(d[2])}</span></div></div>`;}).join('')}
+        <div class="note">${c.nota}</div></div>`;
+    }
+    if(p.kpis) h+= head('chart','Eficiência comprovada') + `<div class="kpis">${p.kpis.map(k=>`<div class="kpi">${ic('check',1.8)}<div class="v">${k.v}${k.u?`<small>${k.u}</small>`:''}</div><div class="l">${k.l}</div></div>`).join('')}</div>`;
+    if(p.grafico){
+      const g=p.grafico, max=Math.max(...g.dados.map(d=>Math.abs(d[1]))), neg=Math.min(0,...g.dados.map(d=>d[1]));
+      const zero = (-neg)/(max-neg)*100;
+      const rows=[...g.dados].reverse().map((d,i)=>{
+        const v=d[1], w=Math.abs(v)/(max-neg)*100, left = v<0 ? zero-w : zero;
+        return `<div class="bar"><span class="uf">${d[0]}</span><div class="tr"><div class="fl ${v<0?'neg':(i<4?'top':'')}" style="left:${left}%;width:${Math.max(w,.6)}%"></div></div><span class="vl ${v<0?'neg':''}">${v>0?'+':''}${v.toFixed(1).replace('.',',')}</span></div>`;
+      }).join('');
+      h+= `<div style="height:26px"></div>` + head('chart',g.titulo,g.sub) + `<div class="card chart"><span class="pill">${g.eixo}</span><div class="bars">${rows}</div><div class="note">Cada barra representa uma área avaliada (UF). Fonte: folder ${esc(p.nomeTxt)}.</div></div>`;
+    }
+    if(p.culturas){
+      const c=p.culturas;
+      h+= head('chart',c.titulo,c.sub) + `<div class="crops">${c.itens.map(x=>`<div class="card crop">${ic(x[3],1.5)}<div><div class="cn">${x[0]}</div><div class="cv">${x[1]} <small>${x[2]}</small></div></div></div>`).join('')}</div>` +
+        `<div class="bignum"><b>${c.big[0]}</b><span>${c.big[1]}</span></div>`;
+    }
+    add('resultados','Resultados',h);
+  }
+
+  add('video','Vídeo', head('play','Vídeo') + videoBlock(p));
+  if(p.aviso) add('aviso','Aviso', `<div class="aviso">${ic('alert',1.8)}<p><b>Aviso</b><br>${p.aviso}</p></div>`);
+
+  const linha=LINHAS.find(l=>l.id===p.linha);
+  const others=P.filter(o=>o.linha===p.linha && o.id!==p.id);
+  return `<section class="phero fade">
+      <div>
+        <div class="caps" style="color:var(--limao)">${linha.nome}</div>
+        <div class="pname">${p.nome}</div>
+        <div class="pcat">${p.cat}</div>
+        <div class="pslogan">${p.slogan}</div>
+        ${p.sip?`<div class="sip">${ic('check',2)} Integra o SIP · Serviço Integrado de Pulverização</div>`:''}
+        <div class="micro"><div class="mi">${ic(p.linha==='biologicos'?'micro':(p.linha==='nutricao'?'leaf':'drop'),1.6)}</div><div><b>${p.micro.t}</b><span>${p.micro.d}</span></div></div>
+        ${Array.isArray(FOLDERS[p.id]) ? FOLDERS[p.id].map((f,k)=>`<div class="actions"><button class="btn solid" data-dl="${p.id}|${k}">${ic('down',2)} Folder ${f.label}</button><button class="btn" data-open="${p.id}|${k}">${ic('doc',2)} Abrir ${f.label}</button></div>`).join('') :
+        `<div class="actions">
+          <button class="btn solid" data-dl="${p.id}">${ic('down',2)} Baixar folder</button>
+          <button class="btn" data-open="${p.id}">${ic('doc',2)} Abrir folder</button>
+        </div>`}
+      </div>
+      <div class="pimg ${p.wide?'wide':''}"><img src="${p.img}" alt="${esc(p.nomeTxt)}"></div>
+    </section>
+    <nav class="jump">${jump.map(j=>`<a href="#${p.id}" data-go="s-${j[0]}">${j[1]}</a>`).join('')}</nav>
+    ${sec.join('')}
+    ${others.length?`<section class="sec">${head('leaf','Outros produtos da linha')}<div class="pgrid">${others.map(pcard).join('')}</div></section>`:''}
+    ${foot()}`;
+}
+function videoBlock(p){
+  const v=VIDEOS[p.id];
+  if(!v) return `<div class="video"><div class="ph">${ic('play',1.4)}<b>Vídeo em breve</b><span>O vídeo do ${esc(p.nomeTxt)} será adicionado aqui.</span></div></div>`;
+  if(/youtube\.com|youtu\.be|drive\.google|vimeo/.test(v))
+    return `<a class="video" href="${esc(v)}" target="_blank" rel="noopener"><div class="ph">${ic('play',1.4)}<b>Assistir ao vídeo</b><span>Abre em uma nova janela</span></div></a>`;
+  return `<div class="video"><video src="${esc(v)}" controls playsinline preload="metadata"></video></div>`;
+}
+
+function vBinova(){
+  return `<section class="bhero fade"><img src="img/logo.png" alt="agroceres BINOVA">
+    <div class="lhead" style="padding-top:18px"><div class="kick">Sobre nós</div><h1>Nutrição vegetal<br>e biológicos</h1>
+    <p>A Agroceres Binova é a empresa do Grupo Agroceres dedicada à nutrição vegetal e aos biológicos, com portfólio de Nutrição, Biológicos e Adjuvantes para elevar a produtividade e a sustentabilidade da lavoura.</p></div></section>
+
+  <section class="sec">${head('sync','Nossa história')}
+    <div class="timeline">
+      <div class="tl"><b>1945</b><p>Fundação do Grupo Agroceres, conglomerado brasileiro do agronegócio.</p></div>
+      <div class="tl"><b>1997</b><p>Fundação, em Ribeirão Preto (SP), da empresa que hoje é a Agroceres Binova, especializada em fertilizantes especiais.</p></div>
+      <div class="tl"><b>2017</b><p>A empresa passa a integrar o Grupo Agroceres como Agroceres Binova, marcando a entrada do grupo no segmento de nutrição vegetal.</p></div>
+      <div class="tl"><b>Hoje</b><p>Agroceres Binova: portfólio completo de nutrição vegetal, biológicos e adjuvantes.</p></div>
+    </div></section>
+
+  <section class="sec">${head('leaf','Nossas linhas')}
+    <div class="grid3">${LINHAS.map(l=>`<a class="card ben" href="#${l.id}">${ic(l.icon,1.5)}<b>${l.nome}</b><span>${l.desc}</span></a>`).join('')}</div></section>
+
+  <section class="sec">${head('check','Nossos pilares','Mais de 75 anos de conhecimento do agronegócio brasileiro')}
+    <div class="pillars">
+      <div class="card feat"><span class="tag">Tecnologia &amp; Inovação</span><div class="fb">${ic('sync',1.5)}<p>A tecnologia de hoje, investindo sempre na de amanhã: alianças tecnológicas no Brasil e no exterior e centros de pesquisa que desenvolvem, testam e adaptam as melhores tecnologias à realidade do cliente.</p></div></div>
+      <div class="card feat"><span class="tag">Qualidade</span><div class="fb">${ic('shield',1.5)}<p>Resultado de investimento em tecnologia e gestão: laboratórios e sistemas que monitoram e rastreiam todo o processo, da matéria-prima ao transporte do produto acabado.</p></div></div>
+      <div class="card feat"><span class="tag">Atendimento</span><div class="fb">${ic('hand',1.5)}<p>Rede de profissionais e representantes em todo o território nacional, visitando e conhecendo a realidade de cada cliente para oferecer soluções personalizadas.</p></div></div>
+      <div class="card feat"><span class="tag">Resultado</span><div class="fb">${ic('chart',1.5)}<p>Nada nos gratifica mais do que ver o nosso empenho expresso no resultado do cliente, levando tecnologia ao campo para produzir cada vez mais e melhor.</p></div></div>
+    </div></section>
+
+  <section class="sec">${head('net','Empresas do Grupo Agroceres')}
+    <div class="group">
+      <div class="gco"><b>Agroceres Multimix</b><span>Nutrição animal</span></div>
+      <div class="gco"><b>Agroceres PIC</b><span>Genética de suínos</span></div>
+      <div class="gco"><b>Biomatrix · Santa Helena</b><span>Sementes de milho e sorgo</span></div>
+      <div class="gco"><b>Inaceres</b><span>Palmitos cultivados</span></div>
+      <div class="gco"><b>Mirex-S</b><span>Proteção de cultivos</span></div>
+      <div class="gco me"><b>Agroceres Binova</b><span>Nutrição vegetal e biológicos</span></div>
+    </div></section>
+
+  <section class="sec">${head('globe','Fale com a gente')}
+    <div class="contact">
+      <a href="https://www.agroceresbinova.com.br" target="_blank" rel="noopener">${ic('globe')}<span>www.agroceresbinova.com.br</span></a>
+      <a href="https://www.instagram.com/agroceresbinova" target="_blank" rel="noopener">${ic('insta')}<span>/agroceresbinova</span></a>
+    </div></section>${foot()}`;
+}
+
+/* ---------- Folder download / open ---------- */
+let DL=null;
+try{ if(window.claude && claude.use) claude.use('downloads').then(d=>{DL=d;}).catch(()=>{}); }catch(e){}
+function folderOf(key){
+  const [id,k]=key.split('|'); let f=FOLDERS[id], label='';
+  if(Array.isArray(f)){ const it=f[+k||0]; f=it&&it.url; label=it?' - '+it.label:''; }
+  return {id, url:f, label};
+}
+async function baixar(key){
+  const fo=folderOf(key), id=fo.id, url=fo.url, p=P.find(x=>x.id===id);
+  if(!url){ toast('Folder ainda não disponível.'); return; }
+  const fname='Folder - '+p.nomeTxt+fo.label+'.pdf';
+  try{
+    if(!DL) throw 0;
+    toast('Preparando o folder…');
+    const blob=await (await fetch(url)).blob();
+    await DL.save({filename:fname, data:blob, mimeType:'application/pdf'});
+  }catch(e){
+    if(e && e.name==='AbortError') return;
+    abrir(key);
+  }
+}
+function abrir(key){
+  const url=folderOf(key).url;
+  if(!url){ toast('Folder ainda não disponível.'); return; }
+  const a=document.createElement('a'); a.href=url; a.target='_blank'; a.rel='noopener'; document.body.appendChild(a); a.click(); a.remove();
+}
+document.addEventListener('click',e=>{
+  const d=e.target.closest('[data-dl]'); if(d){ e.preventDefault(); baixar(d.dataset.dl); return; }
+  const o=e.target.closest('[data-open]'); if(o){ e.preventDefault(); abrir(o.dataset.open); return; }
+  const g=e.target.closest('[data-go]'); if(g){ e.preventDefault(); const el=document.getElementById(g.dataset.go); if(el){ window.scrollTo({top:el.getBoundingClientRect().top+scrollY-80,behavior:'smooth'}); } }
+});
+
+/* =========================================================
+   MANEJO POR CULTURA
+   validar:true = posicionamento proposto, ainda não confirmado pelo time técnico
+   ========================================================= */
+const MOSTRAR_VALIDACAO = true;
+const MANEJO = {
+  soja:{
+    nome:"Soja", icon:"soy",
+    intro:"Posicionamento dos produtos Agroceres Binova ao longo do ciclo da soja, da dessecação ao enchimento de grãos.",
+    estagios:[
+      {cod:"Pré-plantio", nome:"Dessecação"},
+      {cod:"TS / Sulco", nome:"Plantio"},
+      {cod:"VE–V2", nome:"Emergência"},
+      {cod:"V3–V5", nome:"Vegetativo"},
+      {cod:"V6–Vn", nome:"Pré-fechamento"},
+      {cod:"R1–R2", nome:"Florescimento"},
+      {cod:"R3–R4", nome:"Formação de vagens"},
+      {cod:"R5–R6", nome:"Enchimento de grãos"}
+    ],
+    itens:[
+      {p:"agkill", de:0, ate:0, como:"Adjuvante na calda de dessecação", obj:"Qualidade de calda e eficiência dos herbicidas"},
+      {p:"kit-gammon-controle", de:1, ate:1, como:"Tratamento de sementes / sulco", obj:"Doenças de solo e nematoides"},
+      {p:"agvital", de:1, ate:1, como:"Tratamento de sementes / sulco", obj:"Vigor, enraizamento e suporte à nodulação"},
+      {p:"kit-gammon-up", de:1, ate:1, como:"Tratamento de sementes / sulco", obj:"Fertilidade do solo: fósforo, enraizamento e vigor", validar:true},
+      {p:"agvital", de:3, ate:3, como:"Aplicação foliar em V4", obj:"Desenvolvimento vegetativo e tolerância a estresses"},
+      {p:"arqplant", de:3, ate:4, como:"Aplicação foliar na fase vegetativa", obj:"Arquitetura: mais engalhamento", validar:true},
+      {p:"agplus", de:3, ate:4, como:"Aplicação foliar na fase vegetativa", obj:"Raiz, brotação e tolerância a estresses", validar:true},
+      {p:"agbti", de:3, ate:7, como:"Foliar, conforme monitoramento", obj:"Lagarta-falsa-medideira e lagarta-da-soja", demanda:true},
+      {p:"agnexmmon-pro", de:3, ate:7, como:"Foliar, conforme monitoramento", obj:"Mosca-branca e ácaro-rajado", demanda:true},
+      {p:"agtecmmon", de:4, ate:7, como:"Foliar, no programa de fungicidas", obj:"Mancha-alvo e antracnose", validar:true},
+      {p:"agfiller-direct", de:6, ate:7, como:"Aplicação foliar", obj:"Enchimento de grãos e peso", validar:true},
+      {p:"agenergia", de:2, ate:7, como:"Foliar em momentos de estresse", obj:"Seca, calor, fitotoxicidade e pragas", demanda:true}
+    ]
+  },
+  milho:{
+    nome:"Milho", icon:"corn",
+    intro:"Posicionamento dos produtos Agroceres Binova ao longo do ciclo do milho, da dessecação ao enchimento de grãos.",
+    estagios:[
+      {cod:"Pré-plantio", nome:"Dessecação"},
+      {cod:"TS / Sulco", nome:"Plantio"},
+      {cod:"VE–V2", nome:"Emergência"},
+      {cod:"V3–V5", nome:"Vegetativo inicial"},
+      {cod:"V6–V8", nome:"Vegetativo"},
+      {cod:"V9–VT", nome:"Pré-pendoamento"},
+      {cod:"R1", nome:"Embonecamento"},
+      {cod:"R2–R5", nome:"Enchimento de grãos"}
+    ],
+    itens:[
+      {p:"agkill", de:0, ate:0, como:"Adjuvante na calda de dessecação", obj:"Qualidade de calda e eficiência dos herbicidas"},
+      {p:"kit-gammon-controle", de:1, ate:1, como:"Tratamento de sementes / sulco", obj:"Doenças de solo e nematoides", validar:true},
+      {p:"agvital", de:1, ate:1, como:"Tratamento de sementes / sulco", obj:"Vigor, arranque e enraizamento", validar:true},
+      {p:"kit-gammon-up", de:1, ate:1, como:"Tratamento de sementes / sulco", obj:"Fertilidade do solo: fósforo, enraizamento e vigor", validar:true},
+      {p:"agvital", de:3, ate:3, como:"Aplicação foliar em V4", obj:"Desenvolvimento vegetativo e tolerância a estresses", validar:true},
+      {p:"agnexmmon-pro", de:2, ate:4, como:"Foliar, conforme monitoramento", obj:"Cigarrinha-do-milho (enfezamentos)", demanda:true, validar:true},
+      {p:"agbti", de:2, ate:5, como:"Foliar, conforme monitoramento", obj:"Lagarta-do-cartucho", demanda:true},
+      {p:"agtecmmon", de:4, ate:6, como:"Foliar, no programa de fungicidas", obj:"Mancha-de-Phaeosphaeria e antracnose", validar:true},
+      {p:"agfiller-direct", de:6, ate:7, como:"Aplicação foliar", obj:"Enchimento de grãos e peso", validar:true},
+      {p:"agenergia", de:2, ate:7, como:"Foliar em momentos de estresse", obj:"Seca, calor, fitotoxicidade e pragas", demanda:true}
+    ]
+  }
+};
+const SEMPRE = [
+  {p:"agultrabio", t:"Em todas as aplicações", d:"Adjuvante de precisão para herbicidas, fungicidas, inseticidas e biológicos — preserva os microrganismos na calda."},
+  {p:"agsky", t:"Em todas as aplicações", d:"Mais cobertura, absorção e penetração no baixeiro."},
+  {p:"agsolucao-evolution", t:"Misturas de tanque", d:"Evita grumos e reações em caldas com vários produtos."},
+  {p:"agpreparo", t:"Antes e depois das aplicações", d:"Limpeza e descontaminação do pulverizador."}
+];
+const LCOR = {biologicos:"#006833", nutricao:"#86C343", adjuvantes:"#5f8f73"};
+
+/* Ilustração da planta por estádio */
+let _pid=0;
+function plantSVG(cul, i){
+  const id='p'+(++_pid);
+  const G=130; // nível do solo
+  let defs=`<defs>
+    <linearGradient id="${id}s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8a6a48"/><stop offset="1" stop-color="#5e4530"/></linearGradient>
+    <linearGradient id="${id}l" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7cc25a"/><stop offset=".55" stop-color="#3f9a3a"/><stop offset="1" stop-color="#2a7330"/></linearGradient>
+    <linearGradient id="${id}d" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5aa848"/><stop offset="1" stop-color="#1f5e28"/></linearGradient>
+    <linearGradient id="${id}c" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#4f9e3e"/><stop offset=".5" stop-color="#7cc25a"/><stop offset="1" stop-color="#3a8a35"/></linearGradient>
+    <radialGradient id="${id}e" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#ffe79a"/><stop offset="1" stop-color="#e2b437"/></radialGradient>
+  </defs>`;
+  let s=`<svg viewBox="0 0 120 160" width="70" height="94" xmlns="http://www.w3.org/2000/svg">${defs}`;
+  // solo
+  s+=`<path d="M0 ${G} Q30 ${G-2} 60 ${G} T120 ${G} V160 H0Z" fill="url(#${id}s)"/>`;
+  for(let k=0;k<14;k++){ const x=(k*37)%118+1, y=G+5+((k*13)%22); s+=`<circle cx="${x}" cy="${y}" r="${(k%3)*.5+.7}" fill="#46331f" opacity=".55"/>`; }
+
+  const leaflet=(x,y,ang,L,fill)=>{ const w=L*.36;
+    return `<g transform="translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${ang.toFixed(1)})"><path d="M0 0C${w} ${-L*.22} ${w*.95} ${-L*.72} 0 ${-L}C${-w*.95} ${-L*.72} ${-w} ${-L*.22} 0 0Z" fill="${fill||`url(#${id}l)`}" stroke="#256b2c" stroke-width=".5"/><path d="M0 0L0 ${-L*.9}" stroke="#bfe3a5" stroke-width=".7" opacity=".9"/>${L>9?`<path d="M0 ${-L*.3}l${w*.55} ${-L*.12}M0 ${-L*.3}l${-w*.55} ${-L*.12}M0 ${-L*.55}l${w*.45} ${-L*.1}M0 ${-L*.55}l${-w*.45} ${-L*.1}" stroke="#bfe3a5" stroke-width=".4" opacity=".7"/>`:''}</g>`; };
+  const trifol=(x,y,a,L)=> leaflet(x,y,a-42,L*.85)+leaflet(x,y,a+42,L*.85)+leaflet(x,y,a,L);
+  const rad=d=>d*Math.PI/180;
+
+  if(i===0){ // palhada + daninhas dessecadas
+    for(let k=0;k<9;k++){ const x=6+k*13; s+=`<path d="M${x} ${G-1}l${10+(k%3)*3} ${-2+(k%2)*3}" stroke="${k%2?'#c9b27f':'#a88f5c'}" stroke-width="2.2" stroke-linecap="round"/>`; }
+    const weed=(x,h)=>`<path d="M${x} ${G}C${x-1} ${G-h*.5} ${x+2} ${G-h*.8} ${x} ${G-h}" stroke="#8c7445" stroke-width="1.6" fill="none"/>
+      <path d="M${x} ${G-h*.4}c-6 -2 -11 2 -15 8M${x} ${G-h*.6}c7 -3 12 0 15 6M${x} ${G-h*.85}c-5 -1 -8 2 -10 6M${x} ${G-h*.3}c6 0 10 4 12 9" stroke="#a98d55" stroke-width="2.4" fill="none" stroke-linecap="round"/>`;
+    s+=weed(38,34)+weed(80,26);
+    return s+'</svg>';
+  }
+  if(i===1){ // semente tratada no sulco
+    s+=`<path d="M38 ${G}Q60 ${G+20} 82 ${G}" fill="#4a3624" opacity=".7"/>`;
+    if(cul==='soja') s+=`<ellipse cx="60" cy="${G+10}" rx="9" ry="7" fill="#d9c27e" stroke="#7a6a2e" stroke-width=".8"/><ellipse cx="60" cy="${G+10}" rx="9" ry="7" fill="#e0475a" opacity=".35"/><path d="M56 ${G+7}q3 -2 6 0" stroke="#7a5a2a" stroke-width="1.2" fill="none"/>`;
+    else s+=`<path d="M53 ${G+3}q7 -4 14 0l-3 15q-4 3 -8 0z" fill="url(#${id}e)" stroke="#a87d1c" stroke-width=".8"/><path d="M53 ${G+3}q7 -4 14 0l-3 15q-4 3 -8 0z" fill="#e0475a" opacity=".3"/>`;
+    s+=`<path d="M60 ${G+16}c-1 5 1 9 -1 14M60 ${G+22}l-4 4M60 ${G+25}l4 3" stroke="#f3ead2" stroke-width="1.3" fill="none" stroke-linecap="round"/>`;
+    s+=`<path d="M60 ${G+3}c0 -5 1 -8 0 -11" stroke="#8fcf6a" stroke-width="1.8" fill="none" stroke-linecap="round"/>`;
+    return s+'</svg>';
+  }
+
+  if(cul==='soja'){
+    const H=[0,0,34,60,86,102,110,114][i], top=G-H;
+    const nodes=[0,0,1,4,6,7,8,8][i], L=[0,0,11,14,16,17,17,16][i];
+    // raízes + nódulos
+    s+=`<path d="M60 ${G}c0 8 -1 16 0 26M60 ${G+4}c-6 3 -12 8 -16 16M60 ${G+5}c6 3 12 7 15 15M60 ${G+12}c-4 2 -7 6 -9 11M60 ${G+12}c4 2 7 5 8 10" stroke="#e8dcc0" stroke-width="1.1" fill="none" stroke-linecap="round"/>`;
+    if(i>=3) [[48,G+14],[70,G+14],[53,G+20],[66,G+21],[58,G+24]].forEach(n=>s+=`<circle cx="${n[0]}" cy="${n[1]}" r="1.6" fill="#f0c9b6" stroke="#b98a72" stroke-width=".4"/>`);
+    // haste
+    s+=`<path d="M60 ${G}C59 ${G-H*.4} 61 ${G-H*.7} 60 ${top}" stroke="#4d8a3a" stroke-width="${i>=5?3:2.2}" fill="none" stroke-linecap="round"/>`;
+    // cotilédones / unifolioladas
+    if(i<=3){ s+=`<ellipse cx="53" cy="${G-7}" rx="6" ry="3.6" fill="#9cc46a" transform="rotate(-20 53 ${G-7})"/><ellipse cx="67" cy="${G-7}" rx="6" ry="3.6" fill="#9cc46a" transform="rotate(20 67 ${G-7})"/>`;
+      const uy=G-Math.min(H*.55,22); s+=leaflet(60,uy,-62,L*.9)+leaflet(60,uy,62,L*.9); }
+    // nós trifoliolados
+    for(let k=1;k<=nodes;k++){
+      const f=k/(nodes+.3), y=G-H*(i<=2?.95:(.28+f*.72)), sd=k%2?1:-1;
+      const ang=sd*(i<=2?0:(68-f*32)), pl=(i<=2?4:10+(1-f)*(i>=4?14:8));
+      const px=60+Math.sin(rad(ang))*pl, py=y-Math.cos(rad(ang))*pl;
+      s+=`<path d="M60 ${y}L${px.toFixed(1)} ${py.toFixed(1)}" stroke="#4d8a3a" stroke-width="1.1"/>`;
+      // vagens e flores na axila
+      if(i>=6 && k>=2 && k<=nodes-2){ const pods=i>=7?3:2;
+        for(let q=0;q<pods;q++){ const pxp=60+sd*(-1.5+q*1.5), pyp=y+1, pa=(q===1?-sd:sd)*(i>=7?120:130)+ (q===2?sd*-35:0), Lp=i>=7?12:9;
+          s+=`<g transform="translate(${pxp} ${pyp}) rotate(${pa})"><path d="M0 0c2.6 1 3.4 ${Lp*.5} 2.4 ${Lp}c-1 1.6 -3.6 1.6 -4.4 0c-.6 ${-Lp*.5} -.4 ${-Lp*.9} 2 ${-Lp}z" fill="${i>=7?'#7fae3f':'#a9d36b'}" stroke="#5b7f2a" stroke-width=".5"/>${i>=7?`<circle cx=".6" cy="${Lp*.3}" r="1.1" fill="#9cc955"/><circle cx=".8" cy="${Lp*.62}" r="1.1" fill="#9cc955"/>`:''}</g>`; } }
+      if(i===5 || (i===6 && k>nodes-3)) s+=`<circle cx="${60+sd*3}" cy="${y-1}" r="1.8" fill="#b18ad6"/><circle cx="${60+sd*5}" cy="${y+1}" r="1.5" fill="#e9dcf5"/><circle cx="${60+sd*2}" cy="${y+2.5}" r="1.4" fill="#9c6fc9"/>`;
+      s+=trifol(px,py,ang,L*(.8+ (1-f)*.35));
+    }
+    // broto apical
+    if(i>=3) s+=trifol(60,top+2,0,L*.55);
+    return s+'</svg>';
+  }
+
+  // MILHO
+  const H=[0,0,30,56,84,104,112,114][i], top=G-H;
+  const nl=[0,0,3,5,7,9,10,10][i], W=[0,0,3.2,4,5,5.5,5.5,5.5][i], LL=[0,0,16,26,36,42,44,44][i];
+  // raízes
+  s+=`<path d="M60 ${G}c-2 8 -8 14 -16 22M60 ${G}c2 9 8 15 15 21M60 ${G}c0 9 -1 17 0 24M60 ${G+3}c-5 4 -12 6 -18 7M60 ${G+3}c5 3 11 5 18 6" stroke="#e8dcc0" stroke-width="1.1" fill="none" stroke-linecap="round"/>`;
+  if(i>=4) s+=`<path d="M58 ${G-6}c-3 3 -5 6 -6 7M62 ${G-6}c3 3 5 6 6 7M59 ${G-9}c-4 4 -6 7 -7 10M61 ${G-9}c4 4 6 7 7 10" stroke="#c8a06a" stroke-width="1.4" fill="none" stroke-linecap="round"/>`;
+  // colmo
+  const sw=i>=4?5:(i>=3?3.6:2.6);
+  s+=`<path d="M${60-sw/2} ${G}L${60-sw*.35} ${top}L${60+sw*.35} ${top}L${60+sw/2} ${G}Z" fill="url(#${id}c)"/>`;
+  for(let k=1;k<nl;k++){ const y=G-H*(k/(nl+.4)); s+=`<path d="M${60-sw/2} ${y}h${sw}" stroke="#2f6e2b" stroke-width=".7"/>`; }
+  // espiga
+  if(i>=6){ const ey=G-H*.5, el=i>=7?26:20;
+    s+=`<g transform="translate(${60+sw*.4} ${ey}) rotate(24)"><path d="M0 0c6 -3 8 ${-el*.5} 5 ${-el}c-2 -3 -6 -3 -7 0c-2 ${el*.4} -2 ${el*.75} 2 ${el}z" fill="${i>=7?'#a7c95e':'#7fbf55'}" stroke="#3f7a2e" stroke-width=".6"/>
+      <path d="M1 ${-el*.1}c2 ${-el*.3} 3 ${-el*.6} 2 ${-el*.85}M3.5 ${-el*.1}c1 ${-el*.35} 1 ${-el*.6} 0 ${-el*.8}" stroke="#4f8a3a" stroke-width=".5" fill="none"/>
+      ${i>=7?`<path d="M-1 ${-el*.82}c1.5 -3 4.5 -3 5.5 0c-1 1.5 -4 1.6 -5.5 0z" fill="url(#${id}e)"/>`:''}
+      <path d="M1 ${-el-1}c-1 -4 -4 -7 -8 -8M2 ${-el-1}c0 -5 -1 -8 -4 -10M3 ${-el}c1 -4 3 -7 6 -8M1.5 ${-el-1}c-3 -2 -7 -2 -10 0" stroke="${i>=7?'#8a5a2b':'#d79a6e'}" stroke-width=".8" fill="none" stroke-linecap="round"/></g>`; }
+  // folhas
+  for(let k=1;k<=nl;k++){
+    const f=k/(nl+.4), y=G-H*(i<=2?.25+f*.7:f*.92), sd=k%2?1:-1;
+    const Lx=LL*(i<=2?.7:(.75+Math.sin(f*Math.PI)*.35))*(k===nl&&i>=5?.6:1);
+    const tx=60+sd*Lx, ty=y+(i<=2?-Lx*.35:Lx*.25 - (1-f)*4), cx=60+sd*Lx*.45, cy=y-Lx*(i<=2?.55:.42);
+    const w=W*(1-f*.25);
+    s+=`<path d="M60 ${y-w*.6}Q${cx.toFixed(1)} ${(cy-w).toFixed(1)} ${tx.toFixed(1)} ${ty.toFixed(1)}Q${(cx+sd*2).toFixed(1)} ${(cy+w*.9).toFixed(1)} 60 ${y+w*.5}Z" fill="url(#${id}d)" stroke="#1f5e28" stroke-width=".4"/>
+      <path d="M60 ${y}Q${cx.toFixed(1)} ${(cy-.2).toFixed(1)} ${tx.toFixed(1)} ${ty.toFixed(1)}" stroke="#d6efc0" stroke-width=".7" fill="none" opacity=".85"/>`;
+  }
+  // cartucho / pendão
+  if(i<5) s+=`<path d="M58.5 ${top+2}c0 -6 1 -10 1.5 -13c.5 3 1.5 7 1.5 13z" fill="#7cc25a"/>`;
+  else { const t=top-2;
+    s+=`<path d="M60 ${t+4}V${t-16}" stroke="#c9a24a" stroke-width="1.6"/>`;
+    [[-1,-14,-9],[1,-12,-8],[-1,-8,-11],[1,-6,-10],[-1,-2,-8],[1,0,-7]].forEach(b=>{ s+=`<path d="M60 ${t+b[1]+10}q${b[0]*4} -2 ${b[0]*9} ${b[2]+10}" stroke="#d2ad55" stroke-width="1.2" fill="none" stroke-linecap="round"/>`; });
+    for(let q=0;q<10;q++) s+=`<circle cx="${60+(q%2?1:-1)*(1+q*.8)}" cy="${t-14+q*2.2}" r=".8" fill="#e6c46a"/>`;
+  }
+  return s+'</svg>';
+}
+
+function vManejoHome(){
+  return `<section class="lhead fade"><div class="kick">Manejo por cultura</div><h1>Posicionamento<br>na lavoura</h1>
+    <p>Onde entra cada produto Agroceres Binova no ciclo da cultura, do pré-plantio ao enchimento de grãos.</p></section>
+    <section class="lines">${Object.entries(MANEJO).map(([k,c])=>`<a class="card line" href="#manejo-${k}"><div class="ic">${ic(c.icon)}</div>
+      <div><h3>${c.nome}</h3><p>${c.estagios.length} etapas · ${new Set(c.itens.map(x=>x.p)).size} produtos posicionados</p></div><div class="go">${ic('chev',2.2)}</div></a>`).join('')}</section>${foot()}`;
+}
+
+function vManejo(key){
+  const c=MANEJO[key], E=c.estagios, n=E.length;
+  const prod=id=>P.find(x=>x.id===id);
+  const vtag=it=> (MOSTRAR_VALIDACAO && it.validar) ? `<span class="vtag">a validar</span>` : '';
+  // Régua / Gantt
+  const ids=[...new Set(c.itens.map(x=>x.p))];
+  const order=['biologicos','nutricao','adjuvantes'];
+  ids.sort((a,b)=>{const pa=prod(a),pb=prod(b); const d=order.indexOf(pa.linha)-order.indexOf(pb.linha); if(d) return d; return Math.min(...c.itens.filter(x=>x.p===a).map(x=>x.de))-Math.min(...c.itens.filter(x=>x.p===b).map(x=>x.de));});
+  const cols=`grid-template-columns:118px repeat(${n},minmax(70px,1fr))`;
+  const gantt=`<div class="gwrap"><div class="gantt" style="${cols}">
+    <div class="gh gcorner"></div>
+    ${E.map((e,i)=>`<div class="gh"><div class="gplant">${plantSVG(key,i)}</div><b>${e.cod}</b><span>${e.nome}</span></div>`).join('')}
+    ${ids.map(id=>{const p=prod(id); const segs=c.itens.filter(x=>x.p===id);
+      return `<a class="gname" href="#${id}" style="--c:${LCOR[p.linha]}"><i></i><span>${esc(p.nomeTxt)}</span></a>
+        <div class="grow" style="grid-column:2 / span ${n};grid-template-columns:repeat(${n},1fr)">
+          ${segs.map(s=>`<div class="gbar ${s.demanda?'dem':''}" style="grid-column:${s.de+1} / ${s.ate+2};--c:${LCOR[p.linha]}" title="${esc(s.como)}">${s.ate-s.de>=1?esc(s.como.split(',')[0]):''}</div>`).join('')}
+        </div>`;}).join('')}
+  </div></div>
+  <div class="glegend"><span><i style="background:${LCOR.biologicos}"></i>Biológicos</span><span><i style="background:${LCOR.nutricao}"></i>Nutrição</span><span><i style="background:${LCOR.adjuvantes}"></i>Adjuvantes</span><span><i class="dem"></i>Conforme monitoramento / estresse</span></div>`;
+
+  // Linha do tempo detalhada
+  const tl=E.map((e,i)=>{
+    const its=c.itens.filter(x=>x.de===i);
+    const cont=c.itens.filter(x=>x.de<i && x.ate>=i);
+    return `<div class="ms" id="st-${i}">
+      <div class="msd"><span>${i+1}</span></div>
+      <div class="msb">
+        <div class="msh">${plantSVG(key,i)}<div><b>${e.cod}</b><span>${e.nome}</span></div></div>
+        ${its.map(it=>{const p=prod(it.p); return `<a class="mi2" href="#${p.id}" style="--c:${LCOR[p.linha]}">
+            <img src="${p.thumb}" alt="" loading="lazy">
+            <div><div class="mt">${p.nome}${vtag(it)}</div><div class="mo">${it.obj}</div>
+            <div class="mc">${ic('drop',2)}${it.como}${it.ate>it.de?` · até ${E[it.ate].cod}`:''}</div></div></a>`;}).join('')}
+        ${cont.length?`<div class="mcont">Segue em uso: ${cont.map(x=>`<a href="#${x.p}">${prod(x.p).nomeTxt}</a>`).join(' · ')}</div>`:''}
+        ${!its.length&&!cont.length?`<div class="mcont">Sem aplicação Agroceres Binova prevista nesta etapa.</div>`:''}
+      </div></div>`;
+  }).join('');
+
+  const sempre=SEMPRE.map(s=>{const p=prod(s.p); return `<a class="card sem" href="#${p.id}"><img src="${p.thumb}" alt="" loading="lazy"><div><div class="caps" style="color:var(--limao);font-size:10.5px">${s.t}</div><b>${p.nome}</b><span>${s.d}</span></div></a>`;}).join('');
+
+  const tabs=Object.entries(MANEJO).map(([k,x])=>`<a href="#manejo-${k}" class="${k===key?'on':''}">${ic(x.icon,1.7)}${x.nome}</a>`).join('');
+  return `<section class="lhead fade"><div class="kick">Manejo por cultura</div><h1>${c.nome}</h1><p>${c.intro}</p></section>
+    <div class="ctabs">${tabs}</div>
+    ${MOSTRAR_VALIDACAO && c.itens.some(x=>x.validar)?`<div class="vbanner">${ic('alert',1.8)}<p><b>Versão para validação.</b> Itens marcados como <span class="vtag">a validar</span> são posicionamentos propostos que ainda precisam de confirmação técnica (estádio e cultura). Sempre consulte a bula.</p></div>`:''}
+    <section class="sec">${head('chart','Régua de manejo','Deslize para o lado para ver todo o ciclo')}${gantt}</section>
+    <section class="sec">${head('sprout','Etapa por etapa')}<div class="mtl">${tl}</div></section>
+    <section class="sec">${head('drop','Em todas as aplicações','Tecnologia de aplicação Agroceres Binova')}<div class="sems">${sempre}</div></section>
+    ${foot()}`;
+}
+
+/* ---------- Router ---------- */
+const TABS=[["inicio","Início","home"],["manejo","Manejo","sprout"],["biologicos","Biológicos","micro"],["nutricao","Nutrição","leaf"],["adjuvantes","Adjuvantes","drop"],["binova","Agroceres Binova","building"]];
+let hist=[];
+function render(){
+  const h=(location.hash||'#inicio').slice(1)||'inicio';
+  let html, crumb='Portfólio', tab=h;
+  const l=LINHAS.find(x=>x.id===h), p=P.find(x=>x.id===h);
+  if(h==='inicio'){ html=vHome(); }
+  else if(h==='binova'){ html=vBinova(); crumb='Sobre a Agroceres Binova'; }
+  else if(h==='manejo'){ html=vManejoHome(); crumb='Manejo'; }
+  else if(h.startsWith('manejo-') && MANEJO[h.slice(7)]){ html=vManejo(h.slice(7)); crumb='Manejo · '+MANEJO[h.slice(7)].nome; tab='manejo'; }
+  else if(l){ html=vLinha(l); crumb=l.nome; }
+  else if(p){ html=vProduto(p); crumb=LINHAS.find(x=>x.id===p.linha).nome; tab=p.linha; }
+  else { html=vHome(); tab='inicio'; }
+  app.innerHTML=html; $('#crumb').textContent=crumb;
+  $('#back').classList.toggle('on', h!=='inicio');
+  $('#nav').innerHTML=TABS.map(t=>`<a href="#${t[0]}" class="${t[0]===tab?'on':''}">${ic(t[2],1.8)}${t[1]}</a>`).join('');
+  bindSearch(); window.scrollTo(0,0);
+  if(hist[hist.length-1]!==h) hist.push(h);
+}
+$('#back').addEventListener('click',()=>{
+  hist.pop(); const prev=hist.pop();
+  const h=(location.hash||'#inicio').slice(1), p=P.find(x=>x.id===h);
+  location.hash = prev || (p ? p.linha : 'inicio');
+});
+window.addEventListener('hashchange',render);
+render();
+</script>
+</body>
+</html>
