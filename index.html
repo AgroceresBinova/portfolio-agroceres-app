@@ -4,8 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Portfólio Agroceres Binova</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#006833">
+<link rel="icon" href="icon-192.png">
+<style>
+@font-face{font-family:'Exo 2';font-style:normal;font-weight:300;font-display:swap;src:url(fonts/exo-2-latin-300-normal.woff2) format('woff2')}
+@font-face{font-family:'Exo 2';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/exo-2-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Exo 2';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/exo-2-latin-500-normal.woff2) format('woff2')}
+@font-face{font-family:'Exo 2';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/exo-2-latin-600-normal.woff2) format('woff2')}
+@font-face{font-family:'Exo 2';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/exo-2-latin-700-normal.woff2) format('woff2')}
+@font-face{font-family:'Exo 2';font-style:normal;font-weight:800;font-display:swap;src:url(fonts/exo-2-latin-800-normal.woff2) format('woff2')}
+@font-face{font-family:'Exo 2';font-style:normal;font-weight:900;font-display:swap;src:url(fonts/exo-2-latin-900-normal.woff2) format('woff2')}
+@font-face{font-family:'Exo 2';font-style:italic;font-weight:400;font-display:swap;src:url(fonts/exo-2-latin-400-italic.woff2) format('woff2')}
+@font-face{font-family:'Exo 2';font-style:italic;font-weight:600;font-display:swap;src:url(fonts/exo-2-latin-600-italic.woff2) format('woff2')}
+</style>
 <style>
 :root{
   --verde:#006833; --verde2:#007345; --limao:#86C343; --vivo:#3BA635;
@@ -351,22 +363,22 @@ em,i{font-style:italic}
    CONFIGURAÇÃO — preencha aqui links de folder e vídeo
    ========================================================= */
 const FOLDERS = {
-  "kit-gammon-controle": "/_blob/cefc85759412bb2d9719aed33a7860ed",
-  "agtecmmon": "/_blob/b1a1ce4534b68c25d0b885e7478263a6",
-  "agbti": "/_blob/1c5016a844c441a849339aa9d3b05f26",
-  "agnexmmon-pro": "/_blob/b0831fa59bad989e09990a7dda02d990",
-  "agvital": "/_blob/4330e70611941e6451e5afa9bc69ff75",
-  "agenergia": "/_blob/9b85f618bf0549da18bb0527e6525f1f",
-  "agplay": "/_blob/f42eb1dae29e02a73a2959b6e1220d1d",
-  "agfiller-direct": "/_blob/d3a8b74b7eea630e39f4f011046aab2e",
-  "arqplant": "/_blob/fcfdc3ba133626c689b6d185b4d7e435",
-  "agkill": "/_blob/88ed32da2ed4ab82d2a9de32efe793c8",
-  "agsky": "/_blob/4685bc0d1054bfdca686a0091507c7c3",
-  "agsolucao-evolution": "/_blob/75ab6daa8d033173dde08347587a74be",
-  "agpreparo": "/_blob/150128347477866e0a72639b9955536d",
-  "agultrabio": "/_blob/45c92544690f2a0053fc27e1e5b257bd",
-  "kit-gammon-up": "/_blob/6df0c625377ec012d625f876091a0fc0",
-  "agplus": [ {label:"Soja", url:"/_blob/57abce54a5fa1a0852cf3b95f40db404"}, {label:"Cana", url:"/_blob/c9dcc9b0da0d66e3dc51c2ae7e48d863"} ]
+  "kit-gammon-controle": "folders/Kit-Gammon-Controle.pdf",
+  "agtecmmon": "folders/agTecmmon.pdf",
+  "agbti": "folders/agBTI.pdf",
+  "agnexmmon-pro": "folders/agNexmmon-Pro.pdf",
+  "agvital": "folders/agVital.pdf",
+  "agenergia": "folders/agEnergia.pdf",
+  "agplay": "folders/agPlay.pdf",
+  "agfiller-direct": "folders/agFiller-Direct.pdf",
+  "arqplant": "folders/ArqPlant.pdf",
+  "agkill": "folders/agKill.pdf",
+  "agsky": "folders/agSky.pdf",
+  "agsolucao-evolution": "folders/agSolucao-Evolution.pdf",
+  "agpreparo": "folders/agPreparo.pdf",
+  "agultrabio": "folders/agUltraBio.pdf",
+  "kit-gammon-up": "folders/Kit-Gammon-UP.pdf",
+  "agplus": [ {label:"Soja", url:"folders/agPlus-Soja.pdf"}, {label:"Cana", url:"folders/agPlus-Cana.pdf"} ]
 };
 const VIDEOS = {            // URL do vídeo (arquivo do app ou link externo, ex.: YouTube)
   "kit-gammon-controle": "",
@@ -991,7 +1003,7 @@ async function baixar(key){
     await DL.save({filename:fname, data:blob, mimeType:'application/pdf'});
   }catch(e){
     if(e && e.name==='AbortError') return;
-    abrir(key);
+    const a=document.createElement('a'); a.href=url; a.download=fname; document.body.appendChild(a); a.click(); a.remove();
   }
 }
 function abrir(key){
