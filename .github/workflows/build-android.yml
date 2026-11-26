@@ -22,23 +22,23 @@ jobs:
           distribution: temurin
           java-version: 17
 
-      - name: Instalar dependências
-        run: |
-          if [ -f package-lock.json ]; then
-            npm ci
-          else
-            npm install
-          fi
+      - name: Criar package.json
+        run: npm init -y
 
       - name: Instalar Capacitor
         run: |
           npm install @capacitor/core @capacitor/cli @capacitor/android
 
+      - name: Preparar aplicação web
+        run: |
+          mkdir -p www
+          cp -r index.html www/
+          if [ -d "img" ]; then cp -r img www/; fi
+          find . -maxdepth 1 -type f \( -name "*.webp" -o -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" -o -name "*.svg" \) -exec cp {} www/ \;
+
       - name: Criar projeto Android
         run: |
-          if [ ! -d "android" ]; then
-            npx cap add android
-          fi
+          npx cap add android
 
       - name: Copiar aplicação para Android
         run: npx cap sync android
