@@ -32,31 +32,16 @@ jobs:
         run: npm install @capacitor/core @capacitor/cli @capacitor/android
 
       - name: Preparar aplicação web
-        run: |
-          rm -rf www
-          mkdir -p www
+  run: |
+    rm -rf www
+    mkdir -p www
 
-          cp -r index.html www/
-
-          if [ -d "img" ]; then
-            cp -r img www/
-          fi
-
-          if [ -d "fonts" ]; then
-            cp -r fonts www/
-          fi
-
-          if [ -d "folders" ]; then
-            cp -r folders www/
-          fi
-
-          if [ -f "manifest.json" ]; then
-            cp manifest.json www/
-          fi
-
-          find . -maxdepth 1 -type f \
-            \( -name "*.webp" -o -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" -o -name "*.svg" -o -name "*.ico" \) \
-            -exec cp {} www/ \;
+    find . -mindepth 1 -maxdepth 1 \
+      ! -name "www" \
+      ! -name "android" \
+      ! -name ".git" \
+      ! -name ".github" \
+      -exec cp -r {} www/ \;
 
       - name: Remover Android anterior
         run: rm -rf android
