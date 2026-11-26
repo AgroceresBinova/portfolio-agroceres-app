@@ -33,7 +33,9 @@ jobs:
 
       - name: Preparar aplicação web
         run: |
+          rm -rf www
           mkdir -p www
+
           cp index.html www/
 
           if [ -d "img" ]; then
@@ -43,6 +45,9 @@ jobs:
           find . -maxdepth 1 -type f \
             \( -name "*.webp" -o -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" -o -name "*.svg" \) \
             -exec cp {} www/ \;
+
+      - name: Remover Android anterior
+        run: rm -rf android
 
       - name: Criar projeto Android
         run: npx cap add android
