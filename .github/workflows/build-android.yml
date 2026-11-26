@@ -36,14 +36,26 @@ jobs:
           rm -rf www
           mkdir -p www
 
-          cp index.html www/
+          cp -r index.html www/
 
           if [ -d "img" ]; then
             cp -r img www/
           fi
 
+          if [ -d "fonts" ]; then
+            cp -r fonts www/
+          fi
+
+          if [ -d "folders" ]; then
+            cp -r folders www/
+          fi
+
+          if [ -f "manifest.json" ]; then
+            cp manifest.json www/
+          fi
+
           find . -maxdepth 1 -type f \
-            \( -name "*.webp" -o -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" -o -name "*.svg" \) \
+            \( -name "*.webp" -o -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" -o -name "*.svg" -o -name "*.ico" \) \
             -exec cp {} www/ \;
 
       - name: Remover Android anterior
