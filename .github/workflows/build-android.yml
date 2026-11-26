@@ -25,6 +25,9 @@ jobs:
       - name: Criar package.json
         run: npm init -y
 
+      - name: Instalar TypeScript
+        run: npm install typescript
+
       - name: Instalar Capacitor
         run: |
           npm install @capacitor/core @capacitor/cli @capacitor/android
